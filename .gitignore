@@ -1,0 +1,6 @@
+.DS_Store
+*.pdf
+serve.mjs
+CLAUDE-2.md
+Screenshot*.png
+temporary screenshots/

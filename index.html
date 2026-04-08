@@ -8,283 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    /* ===================================================
-       CSS CUSTOM PROPERTIES — Section 2 of Brief
-       =================================================== */
-    :root {
-      /* ── Backgrounds (darkest → richest) ── */
-      --bg-primary:        #111820;   /* deep navy-charcoal base */
-      --bg-secondary:      #1C2738;   /* rich navy mid */
-      --bg-card:           #2E3A47;   /* slate panel — palette darkest */
-      --bg-accent:         #47596C;   /* slate feature — palette 4th */
-
-      /* ── Accent system from palette ── */
-      --accent-gold:       #879BB0;   /* mid steel — primary interactive */
-      --accent-gold-light: #AFBCCB;   /* light steel — hover / highlight */
-      --accent-vivid:      #617A94;   /* vibrant steel — buttons, rules, dots */
-
-      /* ── Text ── */
-      --text-primary:      #EDF1F7;   /* cool crisp white */
-      --text-secondary:    #9AAEC2;   /* readable muted blue-grey — lifted for legibility */
-      --text-gold:         #AFBCCB;   /* light steel */
-
-      /* ── Borders ── */
-      --border-subtle:     rgba(97, 122, 148, 0.22);
-      --border-strong:     rgba(135, 155, 176, 0.45);
-
-      --font-display:      'Cormorant Garamond', Georgia, serif;
-      --font-body:         'DM Sans', system-ui, sans-serif;
-      --nav-h:             72px;
-    }
-
-    /* ===================================================
-       RESET & BASE
-       =================================================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: var(--nav-h);
-    }
-
-    body {
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      font-weight: 400;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: var(--font-display);
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    p { color: var(--text-secondary); line-height: 1.8; }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; }
-    ul { list-style: none; }
-
-    /* ===================================================
-       TYPOGRAPHY UTILITIES
-       =================================================== */
-    .label {
-      font-family: var(--font-body);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-      display: block;
-      margin-bottom: 0.85rem;
-    }
-
-    .section-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 400;
-      color: var(--text-primary);
-      line-height: 1.1;
-    }
-
-    .section-subheading {
-      font-family: var(--font-display);
-      font-size: clamp(1.1rem, 2.2vw, 1.55rem);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--text-secondary);
-      margin-top: 0.6rem;
-    }
-
-    .gold-rule {
-      width: 56px;
-      height: 2px;
-      background: linear-gradient(to right, var(--accent-vivid), var(--accent-gold-light));
-      margin: 1.6rem 0 2.4rem;
-      border-radius: 1px;
-    }
-
-    /* ===================================================
-       LAYOUT
-       =================================================== */
-    .wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-
-    /* ===================================================
-       FADE-IN SCROLL ANIMATION
-       =================================================== */
-    .fi {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .fi.d1 { transition-delay: 0.10s; }
-    .fi.d2 { transition-delay: 0.20s; }
-    .fi.d3 { transition-delay: 0.30s; }
-    .fi.d4 { transition-delay: 0.40s; }
-    .fi.visible { opacity: 1; transform: translateY(0); }
-
-    /* ===================================================
-       BUTTONS
-       =================================================== */
-    .btn-gold {
-      display: inline-block;
-      padding: 0.85rem 2.1rem;
-      background: var(--accent-vivid);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.07em;
-      border: 1px solid var(--accent-vivid);
-      cursor: pointer;
-      transition: background 0.22s ease, border-color 0.22s ease;
-    }
-    .btn-gold:hover { background: var(--accent-gold); border-color: var(--accent-gold); }
-
-    .btn-outline {
-      display: inline-block;
-      padding: 0.85rem 2.1rem;
-      background: transparent;
-      color: var(--accent-gold-light);
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.07em;
-      border: 1px solid rgba(175, 188, 203, 0.45);
-      cursor: pointer;
-      transition: border-color 0.22s ease, color 0.22s ease, background 0.22s ease;
-    }
-    .btn-outline:hover { border-color: var(--accent-vivid); background: rgba(97,122,148,0.12); color: var(--text-primary); }
-
-    /* ===================================================
-       NAVIGATION
-       =================================================== */
-    #nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      height: var(--nav-h);
-      background: rgba(17, 24, 32, 0.97);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      gap: 2rem;
-    }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 400;
-      color: var(--text-primary);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2.2rem;
-    }
-
-    .nav-links a {
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: var(--text-secondary);
-      position: relative;
-      padding-bottom: 3px;
-      transition: color 0.22s ease;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 1px;
-      background: var(--accent-gold);
-      transition: width 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .nav-links a:hover { color: var(--text-primary); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-links a.active { color: var(--accent-gold); }
-    .nav-links a.active::after { width: 100%; }
-
-    .nav-icons {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-shrink: 0;
-    }
-    .nav-icons a {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.09em;
-      color: var(--text-secondary);
-      padding: 4px 10px;
-      border: 1px solid transparent;
-      border-radius: 2px;
-      transition: color 0.22s ease, border-color 0.22s ease;
-      text-transform: uppercase;
-    }
-    .nav-icons a:hover { color: var(--accent-gold); border-color: var(--border-subtle); }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 6px;
-      flex-shrink: 0;
-    }
-    .hamburger span {
-      display: block; width: 22px; height: 1.5px;
-      background: var(--text-primary);
-      transition: transform 0.28s ease, opacity 0.28s ease;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    /* Mobile Menu */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: var(--nav-h); left: 0; right: 0;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 1.5rem 2.5rem 2rem;
-      z-index: 999;
-    }
-    .mobile-menu.open { display: block; }
-    .mobile-menu a {
-      display: block;
-      padding: 0.85rem 0;
-      font-size: 1rem;
-      color: var(--text-secondary);
-      border-bottom: 1px solid var(--border-subtle);
-      transition: color 0.22s ease;
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a:hover { color: var(--accent-gold); }
-
-    /* ===================================================
-       SECTION 1 — HOME
-       =================================================== */
+    /* ── Home page ── */
     #home {
       background: var(--bg-primary);
       padding-top: var(--nav-h);
@@ -296,7 +22,6 @@
       grid-template-columns: 55fr 45fr;
       min-height: calc(100vh - var(--nav-h));
     }
-
     .hero-copy {
       display: flex;
       flex-direction: column;
@@ -304,17 +29,6 @@
       padding: 5rem 4rem 5rem 2.5rem;
       max-width: 680px;
     }
-
-    .hero-eyebrow {
-      font-family: var(--font-body);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-      margin-bottom: 1.6rem;
-    }
-
     .hero-name {
       font-family: var(--font-display);
       font-size: clamp(2.6rem, 4.5vw, 4.2rem);
@@ -324,19 +38,17 @@
       letter-spacing: -0.025em;
       margin-bottom: 0.9rem;
     }
-
     .hero-tagline {
       font-family: var(--font-display);
       font-size: clamp(1.15rem, 2.2vw, 1.75rem);
       font-style: italic;
       font-weight: 300;
-      color: var(--accent-gold);
+      color: var(--accent);
       margin-bottom: 1.8rem;
     }
-
     .hero-quote {
       font-family: var(--font-display);
-      font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
       font-style: italic;
       font-weight: 300;
       color: var(--text-primary);
@@ -345,27 +57,6 @@
       margin-top: 2rem;
       padding-left: 1.2rem;
       border-left: 2px solid var(--accent-vivid);
-    }
-    .hero-quote-attr {
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      color: var(--accent-gold);
-      margin-top: 0.7rem;
-      padding-left: 1.2rem;
-    }
-
-    .hero-body {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      line-height: 1.85;
-      max-width: 510px;
-      margin-bottom: 2.6rem;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
     }
 
     .hero-photo {
@@ -379,7 +70,6 @@
       object-fit: cover;
       object-position: center top;
     }
-    /* Gradient bleed from left to merge with dark bg */
     .hero-photo::before {
       content: '';
       position: absolute;
@@ -388,906 +78,127 @@
       z-index: 1;
       pointer-events: none;
     }
-    /* Subtle vignette bottom */
     .hero-photo::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 30%;
-      background: linear-gradient(to top, rgba(17,24,32,0.6) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(13,14,18,0.6) 0%, transparent 100%);
       z-index: 1;
       pointer-events: none;
     }
 
-    /* Highlight Strip */
-    .highlight-strip {
+    /* Credential Badges */
+    .badges-strip {
       background: var(--bg-card);
       border-top: 1px solid var(--border-subtle);
       border-bottom: 1px solid rgba(97, 122, 148, 0.35);
-      padding: 2.4rem 2.5rem;
+      padding: 2.8rem 2.5rem;
     }
-    .highlight-strip-grid {
+    .badges-grid {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
     }
-    .highlight-item {
+    .badge-item {
       display: flex;
       align-items: flex-start;
       gap: 1rem;
     }
-    .hl-bar {
+    .badge-bar {
       width: 3px;
-      min-height: 44px;
-      background: linear-gradient(to bottom, var(--accent-vivid), var(--accent-gold-light));
+      min-height: 48px;
+      background: linear-gradient(to bottom, var(--accent-vivid), var(--accent-light));
       flex-shrink: 0;
       margin-top: 2px;
       border-radius: 2px;
     }
-    .hl-text strong {
+    .badge-text strong {
       display: block;
       font-family: var(--font-body);
       font-size: 0.9rem;
       font-weight: 500;
       color: var(--text-primary);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
-    .hl-text span {
-      font-size: 0.85rem;
+    .badge-text span {
+      font-size: 0.84rem;
       color: var(--text-secondary);
       line-height: 1.6;
     }
 
-    /* Bio Teaser */
-    .bio-teaser {
-      padding: 5.5rem 2.5rem;
-      background: var(--bg-primary);
-    }
-    .bio-teaser-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .bio-teaser h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
-      color: var(--text-primary);
-      margin-bottom: 1.4rem;
-    }
-    .bio-teaser p { font-size: 1.04rem; margin-bottom: 2rem; }
-    .bio-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--accent-gold);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      transition: gap 0.22s ease;
-    }
-    .bio-link::after { content: '→'; }
-    .bio-link:hover { gap: 1rem; }
-
-    /* Institutions Strip */
-    .institutions-strip {
+    /* Affiliated Strip */
+    .affiliated-strip {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border-subtle);
       padding: 2.8rem 2.5rem;
     }
-    .institutions-strip-inner { max-width: 1200px; margin: 0 auto; }
-    .inst-label {
+    .affiliated-inner { max-width: 1200px; margin: 0 auto; }
+    .affiliated-label {
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent-gold);
+      color: var(--accent-light);
       font-weight: 500;
       margin-bottom: 1rem;
+      display: block;
     }
-    .inst-names {
+    .affiliated-names {
       font-family: var(--font-display);
       font-size: 1.05rem;
       color: var(--text-secondary);
       letter-spacing: 0.015em;
       line-height: 2.2;
     }
-    .inst-names .sep { color: var(--border-strong); margin: 0 0.8rem; }
+    .affiliated-names .sep { color: var(--border-strong); margin: 0 0.8rem; }
 
-    /* ===================================================
-       SECTION 2 — ABOUT
-       =================================================== */
-    #about { background: var(--bg-primary); }
-
-    .section-header {
-      padding: 6rem 2.5rem 3.5rem;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .section-header.dark { background: var(--bg-secondary); }
-    .section-header.card { background: var(--bg-card); }
-
-    /* Per-section header overrides */
-    #consulting .section-header {
-      background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-card) 100%);
-      border-bottom: 1px solid rgba(97, 122, 148, 0.4);
-    }
-    #speaking .section-header {
-      background: var(--bg-card);
-    }
-    #research .section-header {
-      background: linear-gradient(160deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
-    }
-
-    /* Biography */
-    .about-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 5rem;
-      align-items: start;
-      padding: 5rem 2.5rem;
-    }
-    .bio-paras p { font-size: 1.03rem; margin-bottom: 1.6rem; }
-    .bio-paras p:last-child { margin-bottom: 0; }
-
-    .bio-affiliations { margin-top: 2.4rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle); }
-    .bio-affil-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.8rem;
-    }
-    .bio-affil-list span {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      border: 1px solid var(--border-subtle);
-      padding: 0.28rem 0.85rem;
-      letter-spacing: 0.04em;
-    }
-
-    .about-photo-col {
-      position: sticky;
-      top: calc(var(--nav-h) + 2rem);
-    }
-    .about-photo-col img {
-      width: 100%;
-      border: 1px solid var(--border-subtle);
-      filter: brightness(0.94) saturate(0.9);
-    }
-
-    /* Values */
-    .values-section {
-      background: var(--bg-accent);
-      border-top: 1px solid rgba(97, 122, 148, 0.4);
-      padding: 5rem 2.5rem;
-    }
-    .values-grid {
-      max-width: 1200px;
-      margin: 2.5rem auto 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
-    }
-    .value-card {
-      background: rgba(17, 24, 32, 0.55);
-      border: 1px solid rgba(175, 188, 203, 0.2);
-      padding: 2.5rem;
-      backdrop-filter: blur(4px);
-      transition: border-color 0.28s ease, transform 0.28s ease, background 0.28s ease;
-    }
-    .value-card:hover { border-color: rgba(175,188,203,0.5); transform: translateY(-3px); background: rgba(17,24,32,0.72); }
-    .value-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.55rem;
-      color: var(--accent-gold-light);
-      margin-bottom: 0.9rem;
-    }
-    .value-card p { font-size: 0.92rem; color: rgba(232, 237, 245, 0.75); }
-
-    /* Timeline */
-    .timeline-section {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .timeline-inner { max-width: 1200px; margin: 0 auto; }
-    .timeline {
-      margin-top: 2.5rem;
-      position: relative;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 1px;
-      background: var(--border-subtle);
-    }
-    .tl-item {
-      display: grid;
-      grid-template-columns: 130px 1fr;
-      gap: 2rem;
-      padding: 1.4rem 0 1.4rem 2rem;
-      border-bottom: 1px solid var(--border-subtle);
-      position: relative;
-    }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -4.5px; top: 50%;
-      transform: translateY(-50%);
-      width: 9px; height: 9px;
-      background: var(--accent-vivid);
-      border-radius: 50%;
-    }
-    .tl-year {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--accent-gold-light);
-      padding-top: 0.1rem;
-    }
-    .tl-desc { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; }
-
-    /* Awards */
-    .awards-section {
-      background: var(--bg-card);
-      border-top: 1px solid rgba(97, 122, 148, 0.35);
-      padding: 5rem 2.5rem;
-    }
-    .awards-inner { max-width: 1200px; margin: 0 auto; }
-    .award-list { margin-top: 2.5rem; }
-    .award-item {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 2rem;
-      padding: 1.4rem 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .award-year {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--accent-gold-light);
-      padding-top: 0.1rem;
-    }
-    .award-desc { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; }
-
-    /* ===================================================
-       SECTION 3 — RESEARCH
-       =================================================== */
-    #research { background: var(--bg-primary); }
-
-    .thesis-block {
-      background: rgba(17, 24, 32, 0.6);
-      border-left: 3px solid var(--accent-vivid);
-      padding: 2.2rem 2.8rem;
-      margin-top: 3rem;
-    }
-    .thesis-title {
-      font-family: var(--font-display);
-      font-size: 1.38rem;
-      font-style: italic;
-      color: var(--text-primary);
-      line-height: 1.45;
-      margin-bottom: 0.9rem;
-    }
-    .thesis-meta { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
-
-    /* Studies */
-    .studies-section {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .studies-inner { max-width: 1200px; margin: 0 auto; }
-    .studies-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
-      margin-top: 2.5rem;
-    }
-    .study-card {
-      background: var(--bg-secondary);
-      border: 1px solid rgba(97, 122, 148, 0.28);
-      padding: 2.5rem;
-      transition: border-color 0.28s ease, transform 0.28s ease;
-    }
-    .study-card:hover { border-color: var(--border-strong); transform: translateY(-4px); }
-    .study-num {
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-      font-weight: 500;
-      margin-bottom: 1.1rem;
-    }
-    .study-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-    .study-card p { font-size: 0.88rem; line-height: 1.78; }
-    .study-status {
-      display: inline-block;
-      margin-top: 1.5rem;
-      font-size: 0.67rem;
-      letter-spacing: 0.08em;
-      color: var(--accent-gold);
-      border: 1px solid var(--border-subtle);
-      padding: 0.22rem 0.7rem;
-    }
-
-    /* Key Findings */
-    .findings-section {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .findings-inner { max-width: 1200px; margin: 0 auto; }
-    .findings-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.8rem;
-      margin-top: 2.5rem;
-    }
-    .finding-card {
-      background: var(--bg-secondary);
-      border: 1px solid rgba(97, 122, 148, 0.28);
-      padding: 3rem;
-    }
-    .finding-card blockquote {
-      font-family: var(--font-display);
-      font-size: 1.18rem;
-      font-style: italic;
-      color: var(--text-primary);
-      line-height: 1.65;
-    }
-
-    /* Endorsement */
-    .endorsement-section {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5.5rem 2.5rem;
-      text-align: center;
-    }
-    .endorsement-inner { max-width: 860px; margin: 0 auto; }
-    .endorsement-quote {
-      font-family: var(--font-display);
-      font-size: clamp(1.15rem, 2.3vw, 1.65rem);
-      font-style: italic;
-      color: var(--text-primary);
-      line-height: 1.65;
-      margin-bottom: 1.8rem;
-    }
-    .endorsement-attr {
-      font-size: 0.82rem;
-      color: var(--accent-gold);
-      letter-spacing: 0.07em;
-    }
-
-    /* Publications */
-    .pubs-section {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .pubs-inner { max-width: 1200px; margin: 0 auto; }
-    .pub-category { margin-top: 3rem; }
-    .pub-cat-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-      font-weight: 500;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 0.5rem;
-    }
-    .pub-item {
-      padding: 1.1rem 0 1.1rem 1.4rem;
-      border-bottom: 1px solid var(--border-subtle);
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      position: relative;
-    }
-    .pub-item::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 1.55rem;
-      width: 6px; height: 6px;
-      background: var(--accent-gold);
-      border-radius: 50%;
-    }
-    .pub-item em { font-style: italic; color: var(--text-primary); }
-    .pub-item strong { color: var(--text-primary); font-weight: 500; }
-    .pub-tag {
-      display: inline-block;
-      margin-left: 0.5rem;
-      font-size: 0.68rem;
-      color: var(--accent-gold);
-      letter-spacing: 0.05em;
-      font-style: italic;
-    }
-
-    /* Presentations */
-    .presentations-section {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .presentations-inner { max-width: 1200px; margin: 0 auto; }
-    .pres-item {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 2rem;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .pres-type {
-      font-size: 0.64rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-      font-weight: 500;
-      padding-top: 0.15rem;
-    }
-    .pres-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.72; }
-    .pres-award {
-      display: block;
-      margin-top: 0.4rem;
-      font-size: 0.72rem;
-      color: var(--accent-gold);
-      font-style: italic;
-    }
-
-    /* ===================================================
-       SECTION 4 — CONSULTING
-       =================================================== */
-    #consulting { background: var(--bg-primary); }
-
-    .consulting-intro {
-      max-width: 720px;
-      font-size: 1.04rem;
-      line-height: 1.85;
-      margin-top: 2rem;
-    }
-
-    .services-section {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .services-inner { max-width: 1200px; margin: 0 auto; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
-      margin-top: 2.5rem;
-    }
-    .service-card {
-      background: var(--bg-secondary);
-      border: 1px solid rgba(97, 122, 148, 0.22);
-      border-top: 2px solid var(--accent-vivid);
-      padding: 2.5rem;
-      transition: border-color 0.28s ease, transform 0.25s ease, background 0.25s ease;
-    }
-    .service-card:hover { border-color: var(--accent-gold); border-top-color: var(--accent-gold-light); transform: translateY(-4px); background: var(--bg-card); }
-    .svc-num {
-      font-family: var(--font-display);
-      font-size: 2.4rem;
-      color: rgba(97, 122, 148, 0.28);
-      font-weight: 600;
-      margin-bottom: 0.9rem;
-      line-height: 1;
-    }
-    .service-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-    .service-card p { font-size: 0.88rem; line-height: 1.78; }
-
-    /* Clients & CTA */
-    .clients-section {
-      background: var(--bg-card);
-      border-top: 1px solid rgba(97, 122, 148, 0.35);
-      padding: 5rem 2.5rem;
-    }
-    .clients-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    .clients-list { margin-top: 1.8rem; }
-    .clients-list li {
-      padding: 0.8rem 0;
-      border-bottom: 1px solid var(--border-subtle);
-      font-size: 0.94rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .clients-list li::before {
-      content: '';
-      display: block; width: 6px; height: 6px;
-      background: var(--accent-gold); border-radius: 50%; flex-shrink: 0;
-    }
-    .cta-card {
-      background: var(--accent-vivid);
-      border: none;
-      padding: 3rem;
-    }
-    .cta-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.9rem;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-    .cta-card p { font-size: 0.94rem; margin-bottom: 2rem; color: rgba(232, 237, 245, 0.82); }
-    .cta-card .btn-gold { background: var(--text-primary); color: var(--accent-vivid); border-color: var(--text-primary); }
-    .cta-card .btn-gold:hover { background: var(--accent-gold-light); color: var(--bg-primary); }
-
-    /* ===================================================
-       SECTION 5 — SPEAKING & ADVOCACY
-       =================================================== */
-    #speaking { background: var(--bg-primary); }
-
-    .speaking-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-      padding: 5rem 2.5rem;
-    }
-    .speaking-photo-col {
-      position: sticky;
-      top: calc(var(--nav-h) + 2rem);
-    }
-    .speaking-photo-col img {
-      width: 100%;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .speaking-text-col h3 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--text-primary);
-      margin-bottom: 1.4rem;
-    }
-    .speaking-intro-p { font-size: 1.03rem; margin-bottom: 2.6rem; }
-    .topics-list { margin-bottom: 0; }
-    .topics-list li {
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border-subtle);
-      font-size: 0.93rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: flex-start;
-      gap: 0.9rem;
-      line-height: 1.6;
-    }
-    .topic-dash { color: var(--accent-gold); flex-shrink: 0; margin-top: 1px; font-size: 1rem; }
-
-    /* Ellveris */
-    .ellveris-section {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .ellveris-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .ellveris-wordmark {
-      font-family: var(--font-display);
-      font-size: 2.8rem;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--accent-gold);
-      line-height: 1.1;
-      margin-top: 0.5rem;
-    }
-    .ellveris-body p { font-size: 1rem; }
-
-    /* UN SDGs & Mentorship */
-    .advocacy-section {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .advocacy-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4.5rem;
-    }
-    .adv-block h3 {
-      font-family: var(--font-display);
-      font-size: 1.55rem;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-    }
-    .adv-block p { font-size: 0.93rem; margin-top: 1.2rem; }
-    .sdg-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1.4rem 0;
-    }
-    .sdg-tag {
-      padding: 0.28rem 0.85rem;
-      border: 1px solid var(--border-strong);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      color: var(--accent-gold);
-      font-weight: 500;
-    }
-
-    /* Pull Quote */
-    .pullquote-section {
-      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-accent) 100%);
-      border-top: 1px solid rgba(97, 122, 148, 0.4);
-      padding: 6.5rem 2.5rem;
-      text-align: center;
-    }
-    .pullquote-inner { max-width: 880px; margin: 0 auto; }
-    .pullquote {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--text-primary);
-      line-height: 1.5;
-      margin-bottom: 1.4rem;
-    }
-    .pullquote-attr {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      letter-spacing: 0.07em;
-    }
-
-    /* ===================================================
-       SECTION 6 — CONTACT
-       =================================================== */
-    #contact { background: var(--bg-primary); }
-
-    .contact-subheader {
-      font-size: 1.04rem;
-      color: var(--text-secondary);
-      max-width: 580px;
-      margin-top: 1rem;
-      line-height: 1.7;
-    }
-
-    .contact-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 5rem;
-      padding: 5rem 2.5rem;
-    }
-
-    /* Form */
-    .contact-form { display: flex; flex-direction: column; gap: 1.4rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
-    .form-label {
-      font-size: 0.67rem;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-    .form-label .opt { color: var(--text-secondary); font-size: 0.62rem; letter-spacing: 0; text-transform: none; }
-    .form-input,
-    .form-select,
-    .form-textarea {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      font-size: 0.94rem;
-      padding: 0.82rem 1rem;
-      outline: none;
-      transition: border-color 0.22s ease;
-      width: 100%;
-    }
-    .form-input::placeholder, .form-textarea::placeholder { color: rgba(143, 160, 178, 0.35); }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent-gold); }
-    .form-select {
-      appearance: none;
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23617A94' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-    }
-    .form-select option { background: var(--bg-card); color: var(--text-primary); }
-    .form-textarea { resize: vertical; min-height: 130px; }
-    .form-submit {
-      align-self: flex-start;
-      padding: 0.9rem 2.4rem;
-      background: var(--accent-vivid);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background 0.22s ease;
-    }
-    .form-submit:hover { background: var(--accent-gold); }
-
-    /* Direct Contact */
-    .contact-info h3 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--text-primary);
-      margin-bottom: 1.8rem;
-    }
-    .ci-item {
-      padding: 1.15rem 0;
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .ci-label {
-      font-size: 0.63rem;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-      font-weight: 500;
-    }
-    .ci-value { font-size: 0.92rem; color: var(--text-secondary); }
-    .ci-value a { color: var(--text-secondary); transition: color 0.22s ease; }
-    .ci-value a:hover { color: var(--accent-gold); }
-
-    /* ===================================================
-       FOOTER
-       =================================================== */
-    footer {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border-subtle);
-      padding: 2.8rem 2.5rem;
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-    }
-    .footer-copy { font-size: 0.78rem; color: var(--text-secondary); letter-spacing: 0.03em; }
-    .footer-social { display: flex; gap: 1.4rem; }
-    .footer-social a {
-      font-size: 0.72rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      font-weight: 500;
-      transition: color 0.22s ease;
-    }
-    .footer-social a:hover { color: var(--accent-gold); }
-
-    /* ===================================================
-       RESPONSIVE
-       =================================================== */
+    /* Responsive */
     @media (max-width: 1024px) {
       .hero { grid-template-columns: 1fr; }
       .hero-photo { min-height: 55vh; }
       .hero-copy { max-width: 100%; padding: 4.5rem 2.5rem 3rem; }
       .hero-photo::before { background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 18%); }
-
-      .bio-teaser-grid { grid-template-columns: 1fr; gap: 3rem; }
-
-      .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
-      .about-photo-col { position: static; }
-
-      .values-grid { grid-template-columns: 1fr 1fr; }
-      .highlight-strip-grid { grid-template-columns: 1fr; gap: 1.4rem; }
-
-      .studies-grid { grid-template-columns: 1fr 1fr; }
-      .findings-grid { grid-template-columns: 1fr; }
-
-      .services-grid { grid-template-columns: 1fr 1fr; }
-      .clients-grid { grid-template-columns: 1fr; gap: 3rem; }
-
-      .speaking-grid { grid-template-columns: 1fr; gap: 3.5rem; }
-      .speaking-photo-col { position: static; }
-      .ellveris-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .advocacy-grid { grid-template-columns: 1fr; gap: 3.5rem; }
-
-      .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .badges-grid { grid-template-columns: 1fr; gap: 1.6rem; }
     }
-
     @media (max-width: 768px) {
-      :root { --nav-h: 64px; }
-      .nav-links { display: none; }
-      .nav-icons { display: none; }
-      .hamburger { display: flex; }
-
-      .values-grid { grid-template-columns: 1fr; }
-      .studies-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-
-      .pres-item { grid-template-columns: 1fr; gap: 0.2rem; }
-      .tl-item { grid-template-columns: 90px 1fr; gap: 1.2rem; }
-      .award-item { grid-template-columns: 62px 1fr; gap: 1rem; }
-
-      .wrap { padding: 0 1.5rem; }
-      #nav { padding: 0 1.5rem; }
-      .mobile-menu { padding: 1.5rem 1.5rem 2rem; }
-
+      .badges-strip, .affiliated-strip { padding-left: 1.5rem; padding-right: 1.5rem; }
       .hero-copy { padding: 3.5rem 1.5rem 2.5rem; }
-      .section-header { padding: 4.5rem 1.5rem 3rem; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-ctas { flex-direction: column; }
-      .btn-gold, .btn-outline { text-align: center; }
-      .bio-teaser { padding: 4rem 1.5rem; }
-      .highlight-strip { padding: 2rem 1.5rem; }
-      .institutions-strip { padding: 2.2rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ==================== NAVIGATION ==================== -->
+  <!-- ── Navigation ── -->
   <nav id="nav">
-    <div class="nav-logo">Dr. Jennifer C. Onuora</div>
+    <a class="nav-logo" href="index.html">Dr. Jennifer C. Onuora</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#consulting">Consulting</a></li>
-      <li><a href="#speaking">Speaking</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="science.html">Science</a></li>
+      <li><a href="consulting.html">Consulting</a></li>
+      <li><a href="advocacy.html">Advocacy</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div class="nav-icons">
-      <a href="https://orcid.org" target="_blank" rel="noopener noreferrer">ORCiD</a>
-      <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="nav-scholar">
+      <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-    <a href="#about"      onclick="closeMobile()">About</a>
-    <a href="#research"   onclick="closeMobile()">Research</a>
-    <a href="#consulting" onclick="closeMobile()">Consulting</a>
-    <a href="#speaking"   onclick="closeMobile()">Speaking</a>
-    <a href="#contact"    onclick="closeMobile()">Contact</a>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html">About</a>
+    <a href="science.html">Science</a>
+    <a href="consulting.html">Consulting</a>
+    <a href="advocacy.html">Advocacy</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
   </div>
 
-
-  <!-- ==================== SECTION 1: HOME ==================== -->
-  <section id="home">
+  <!-- ── Home ── -->
+  <div id="home">
 
     <!-- Hero -->
     <div class="hero">
@@ -1297,47 +208,46 @@
         <blockquote class="hero-quote">"Science that doesn't reach the people who need it most is science that hasn't finished its job."</blockquote>
       </div>
       <div class="hero-photo">
-        <!-- Blue blazer, natural smile — Home hero per Section 5 of brief -->
         <img
           src="IMG_0355%202.JPG"
-          alt="Dr. Jennifer C. Onuora — Scientist, Consultant, and Advocate"
+          alt="Dr. Jennifer C. Onuora"
           loading="eager"
         >
       </div>
     </div>
 
-    <!-- Highlight Strip -->
-    <div class="highlight-strip">
-      <div class="highlight-strip-grid">
-        <div class="highlight-item fi">
-          <div class="hl-bar"></div>
-          <div class="hl-text">
-            <strong>GPA 4.0 / 4.0 · PhD, University of Toronto</strong>
-            <span>Most Outstanding Doctoral Graduate, Department of Nutritional Sciences, 2025</span>
+    <!-- Credential Badges -->
+    <div class="badges-strip">
+      <div class="badges-grid">
+        <div class="badge-item fi">
+          <div class="badge-bar"></div>
+          <div class="badge-text">
+            <strong>Academic Excellence</strong>
+            <span>GPA 4.0 / 4.0, PhD, University of Toronto<br>Most Outstanding Doctoral Graduate, Department of Nutritional Sciences, 2025</span>
           </div>
         </div>
-        <div class="highlight-item fi d1">
-          <div class="hl-bar"></div>
-          <div class="hl-text">
-            <strong>2× ASN Award Recipient</strong>
-            <span>85 applicants, 2 selected — American Society for Nutrition, 2025</span>
+        <div class="badge-item fi d1">
+          <div class="badge-bar"></div>
+          <div class="badge-text">
+            <strong>Awards and Scholarships</strong>
+            <span>2x ASN Award Recipient · 85 applicants, 2 selected<br>American Society for Nutrition, 2025</span>
           </div>
         </div>
-        <div class="highlight-item fi d2">
-          <div class="hl-bar"></div>
-          <div class="hl-text">
-            <strong>Publication in Cell Host &amp; Microbe</strong>
-            <span>One of the top three microbiology journals globally · 5 International Conferences</span>
+        <div class="badge-item fi d2">
+          <div class="badge-bar"></div>
+          <div class="badge-text">
+            <strong>Advocacy and Leadership</strong>
+            <span>Founder, Ellveris · Fellow, HaloHealth<br>Consultant, Verax Partners</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Institutions Strip -->
-    <div class="institutions-strip">
-      <div class="institutions-strip-inner">
-        <p class="inst-label">As featured in / affiliated with</p>
-        <p class="inst-names">
+    <!-- Affiliated Strip -->
+    <div class="affiliated-strip">
+      <div class="affiliated-inner">
+        <span class="affiliated-label">As featured in / affiliated with</span>
+        <p class="affiliated-names">
           American Society for Nutrition
           <span class="sep">·</span>
           Gates Foundation SEPSiS Program
@@ -1351,568 +261,42 @@
       </div>
     </div>
 
-  </section><!-- /home -->
-
-  <!-- ==================== SECTION 2: ABOUT ==================== -->
-  <section id="about">
-
-    <div class="section-header dark">
-      <div class="wrap">
-        <span class="label">About</span>
-        <h2 class="section-heading fi">About Jennifer</h2>
-        <p class="section-subheading fi d1">Scientist. Consultant. Advocate.</p>
-      </div>
-    </div>
-
-    <!-- Biography + Photo + Affiliations -->
-    <div class="about-grid">
-      <div class="bio-paras">
-        <p class="fi">Jennifer C. Onuora is a PhD-trained microbiome scientist, entrepreneur, and advocate whose work sits at the intersection of global child health, data science, and social impact. She completed her doctoral degree in Nutritional Sciences at the University of Toronto's Temerty Faculty of Medicine, where she achieved a perfect GPA of 4.0/4.0 and was recognised as the most outstanding doctoral graduate by her department.</p>
-        <p class="fi d1">Her doctoral research generated one of the most comprehensive characterisations of early-life gut microbiome development ever produced from an urban low- and middle-income country, examining over 55 mother-infant pairs across 385 stool samples and leading a 305-participant randomised controlled trial funded by the Bill and Melinda Gates Foundation. Her findings challenged prevailing assumptions about how infant gut communities develop, demonstrating that environmental and horizontal transmission rivals the vertical maternal transmission that Western-centred research had long emphasised.</p>
-        <p class="fi d2">Jennifer holds an MSc from Newcastle University, England (Commonwealth Master's Scholarship, awarded to fewer than 1% of international applicants globally), and a BSc in Biotechnology with First Class Honours from Ebonyi State University, Nigeria, where she was recognised as Best Graduating Student. In secondary school, she received the Overall Best in Sciences Award and the Exceptional Scholars Award for a record-breaking score in the Nigerian Diocesan Council examinations in 2012.</p>
-        <p class="fi d3">Beyond research, Jennifer is the founder of Ellveris, a mentorship and women's health platform expanding globally, and serves as a pro bono consultant through Verax Partners. She is a Research and Development Scientist at Vitract, where she leads bioinformatics infrastructure and clinical evidence generation, and is actively pursuing a postdoctoral fellowship focused on maternal and child health.</p>
-        <div class="bio-affiliations fi d4">
-          <span class="label" style="margin-top:2rem;">Research &amp; Professional Affiliations</span>
-          <div class="bio-affil-list">
-            <span>American Society for Nutrition</span>
-            <span>Gates Foundation SEPSiS Program</span>
-            <span>Knight Lab, UC San Diego</span>
-            <span>University of Toronto / SickKids Research Institute</span>
-          </div>
-        </div>
-      </div>
-      <div class="about-photo-col fi d1">
-        <!-- Plaid blazer, arms crossed — About page per Section 5 of brief -->
-        <img
-          src="Bio_Jennifer.JPG"
-          alt="Dr. Jennifer C. Onuora — authoritative portrait"
-          loading="lazy"
-        >
-      </div>
-    </div>
-
-    <!-- Values -->
-    <div class="values-section">
-      <div class="wrap">
-        <span class="label">Core Values</span>
-        <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">What drives the work</h2>
-      </div>
-      <div class="values-grid">
-        <div class="value-card fi">
-          <h3>Rigour</h3>
-          <p>Every claim grounded in evidence. Every analysis built to withstand scrutiny.</p>
-        </div>
-        <div class="value-card fi d1">
-          <h3>Impact</h3>
-          <p>Science that stays in journals is science half-finished. The measure is what changes.</p>
-        </div>
-        <div class="value-card fi d2">
-          <h3>Equity</h3>
-          <p>The populations most underserved by research deserve the most rigorous attention.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Career Timeline -->
-    <div class="timeline-section">
-      <div class="timeline-inner">
-        <span class="label">Career</span>
-        <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Career Timeline</h2>
-        <div class="gold-rule"></div>
-        <div class="timeline">
-          <div class="tl-item fi"><div class="tl-year">2012</div><div class="tl-desc">Best Graduating Student, Mater Misericordia Girls' Secondary College, Nigeria</div></div>
-          <div class="tl-item fi"><div class="tl-year">2016–2018</div><div class="tl-desc">Senior Biology Teacher and Girls' Mentor, Nigeria</div></div>
-          <div class="tl-item fi"><div class="tl-year">2018</div><div class="tl-desc">Commonwealth Master's Scholarship; UN Recognition for Voluntary SDG Contributions</div></div>
-          <div class="tl-item fi"><div class="tl-year">2018–2019</div><div class="tl-desc">MSc, Newcastle University, England</div></div>
-          <div class="tl-item fi"><div class="tl-year">2021</div><div class="tl-desc">Laboratory Scientist, Macrogen, Amsterdam</div></div>
-          <div class="tl-item fi"><div class="tl-year">2021–2025</div><div class="tl-desc">PhD, University of Toronto / SickKids Research Institute</div></div>
-          <div class="tl-item fi"><div class="tl-year">2022–2023</div><div class="tl-desc">Visiting Graduate Scholar, Knight Lab, UC San Diego</div></div>
-          <div class="tl-item fi"><div class="tl-year">2023</div><div class="tl-desc">Founded Ellveris; began R&amp;D Scientist role at Vitract</div></div>
-          <div class="tl-item fi"><div class="tl-year">2024</div><div class="tl-desc">Founded Verax Partners (Pro Bono Consulting)</div></div>
-          <div class="tl-item fi"><div class="tl-year">2025</div><div class="tl-desc">PhD conferred; 2× ASN Award Recipient; Cell Host &amp; Microbe publication</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Honours & Awards -->
-    <div class="awards-section">
-      <div class="awards-inner">
-        <span class="label">Recognition</span>
-        <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Honours &amp; Awards</h2>
-        <div class="gold-rule"></div>
-        <div class="award-list">
-          <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Robert Suskind &amp; Leslie Lewinter-Suskind Pediatric Nutrition Student Award, American Society for Nutrition — 2 recipients from 85 applicants</div></div>
-          <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Emerging Leaders in Nutrition Science Poster Award, American Society for Nutrition — Top 10% of nearly 600 submissions</div></div>
-          <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Doctoral Completion Award, Temerty Faculty of Medicine, University of Toronto</div></div>
-          <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Travel Award, IMPACTT Microbiome Conference</div></div>
-          <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Honorable Mention, DNS Research Conference, University of Toronto</div></div>
-          <div class="award-item fi"><div class="award-year">2018</div><div class="award-desc">Commonwealth Master's Scholarship, UK Government and Newcastle University — fewer than 1% of international applicants globally</div></div>
-          <div class="award-item fi"><div class="award-year">2018</div><div class="award-desc">United Nations Recognition for Voluntary Service, UN, Bonn, Germany</div></div>
-          <div class="award-item fi"><div class="award-year">2017</div><div class="award-desc">Best Graduating Student, Biotechnology Department, Ebonyi State University, Nigeria</div></div>
-          <div class="award-item fi"><div class="award-year">2016</div><div class="award-desc">Best Speaker, National Debate, Biotechnology Society of Nigeria</div></div>
-          <div class="award-item fi"><div class="award-year">2012</div><div class="award-desc">Exceptional Scholars Award · Overall Best in Sciences · Best Graduating Student — record-breaking score, Nigerian Diocesan Council examinations</div></div>
-        </div>
-      </div>
-    </div>
-
-  </section><!-- /about -->
+  </div><!-- /home -->
 
 
-  <!-- ==================== SECTION 3: RESEARCH ==================== -->
-  <section id="research">
-
-    <div class="section-header card">
-      <div class="wrap">
-        <span class="label">Research</span>
-        <h2 class="section-heading fi">Research</h2>
-        <p class="section-subheading fi d1">Understanding the earliest days of human microbial life.</p>
-        <p class="fi d2" style="max-width:700px; font-size:1.04rem; margin-top:1.4rem;">Jennifer's doctoral research addressed one of the most consequential blind spots in microbiome science: the near-complete absence of longitudinal data from urban low- and middle-income countries, where the burden of neonatal mortality is highest and the evidence gap most consequential.</p>
-        <div class="thesis-block fi d3">
-          <span class="label" style="margin-bottom:0.6rem;">PhD Thesis · University of Toronto, 2021–2025</span>
-          <p class="thesis-title">Infant and Maternal Microbiome Dynamics and the Effects of Lactiplantibacillus plantarum on the Infant Gut Microbiome in Dhaka, Bangladesh</p>
-          <p class="thesis-meta">Department of Nutritional Sciences, Temerty Faculty of Medicine · Supervisor: Dr. Daniel Roth · Academic Committee: Prof. Philip Sherman</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Studies -->
-    <div class="studies-section">
-      <div class="studies-inner">
-        <span class="label">Studies</span>
-        <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Three Studies</h2>
-        <div class="studies-grid">
-          <div class="study-card fi">
-            <div class="study-num">Study 01</div>
-            <h3>Infant Trajectories</h3>
-            <p>Age-related trajectories of the infant fecal, oral, and skin microbiome and associations with prenatal and postnatal factors in Dhaka, Bangladesh.</p>
-            <span class="study-status">Manuscript in Preparation · Expanding to Include Metabolomics</span>
-          </div>
-          <div class="study-card fi d1">
-            <div class="study-num">Study 02</div>
-            <h3>Maternal Transmission</h3>
-            <p>Environmental and maternal imprints on infant gut metabolic development. Published in <em style="color:var(--accent-gold)">Cell Host &amp; Microbe</em> (2025) — one of the top three journals in microbiology globally. Co-first author.</p>
-            <span class="study-status">Published · Cell Host &amp; Microbe 2025</span>
-          </div>
-          <div class="study-card fi d2">
-            <div class="study-num">Study 03</div>
-            <h3>Probiotic RCT</h3>
-            <p>Effects of early neonatal administration of <em>Lactiplantibacillus plantarum</em> ATCC 202195 on the fecal microbiome and metabolome of infants in Dhaka, Bangladesh — a 305-participant, 3-arm randomised controlled trial.</p>
-            <span class="study-status">Manuscript in Preparation</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Key Findings -->
-    <div class="findings-section">
-      <div class="findings-inner">
-        <span class="label">Key Findings</span>
-        <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Paradigm-Shifting Results</h2>
-        <div class="findings-grid">
-          <div class="finding-card fi">
-            <blockquote>"Shared environmental exposures and horizontal transmission are equally important drivers of infant microbial colonisation as vertical maternal transmission — a paradigm-shifting finding for how microbiome-targeted interventions should be designed in LMICs."</blockquote>
-          </div>
-          <div class="finding-card fi d1">
-            <blockquote>"Probiotic effects were transient and context-specific, determined by the pre-existing ecological structure of the gut microbiome, establishing that interventions proven in one setting cannot be assumed effective in another."</blockquote>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Publications -->
-    <div class="pubs-section">
-      <div class="pubs-inner">
-        <span class="label">Publications</span>
-        <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Peer-Reviewed Work</h2>
-        <div class="gold-rule"></div>
-
-        <div class="pub-category">
-          <div class="pub-cat-label">Peer-Reviewed Articles</div>
-          <div class="pub-item fi">Kvitne KE*, Allaband C*, <strong>Onuora JC*</strong>, et al. Environmental and maternal imprints on infant gut metabolic development. <em>Cell Host &amp; Microbe.</em> 2025. doi:10.1016/j.chom.2025.11.002<span class="pub-tag">[Co-first author]</span></div>
-          <div class="pub-item fi d1">Freitas AC, Li G, Shawon J, Qamar H, Pell LG, et al. Abundance of <em>Bifidobacterium</em> species in the infant gut microbiota and associations with maternal-infant characteristics in Dhaka, Bangladesh. <em>mSphere.</em> 2025. doi:10.1128/msphere.00314-25</div>
-          <div class="pub-item fi d2">Saint-Criq V, Delpiano L, Casement J, <strong>Onuora JC</strong>, Lin J, Gray MA. Choice of differentiation media significantly impacts cell lineage and response to CFTR modulators in fully differentiated primary cultures of cystic fibrosis human airway epithelial cells. <em>Cells.</em> 2020;9(9):2137.</div>
-        </div>
-
-        <div class="pub-category">
-          <div class="pub-cat-label">Published Abstract</div>
-          <div class="pub-item fi"><strong>Onuora JC*</strong>, Neustaeter A, Qamar H, Pell LG, Gonzalez A, McDonald D, et al. Effects of early neonatal administration of <em>Lactiplantibacillus plantarum</em> ATCC 202195 on the fecal microbiota of infants in Dhaka, Bangladesh. <em>Current Developments in Nutrition.</em> 2025;9(Suppl 2). doi:10.1016/j.cdnut.2025.106772</div>
-        </div>
-
-        <div class="pub-category">
-          <div class="pub-cat-label">Manuscripts in Preparation</div>
-          <div class="pub-item fi"><strong>Onuora JC*</strong>, et al. Age-related trajectories of the infant fecal, oral, and skin microbiome and associations with prenatal and postnatal factors in Dhaka, Bangladesh.</div>
-          <div class="pub-item fi d1"><strong>Onuora JC*</strong>, et al. Effects of early neonatal <em>L. plantarum</em> ATCC 202195 administration on the fecal microbiome and metabolome of infants in Dhaka, Bangladesh.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Presentations -->
-    <div class="presentations-section">
-      <div class="presentations-inner">
-        <span class="label">Presentations</span>
-        <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Selected Presentations</h2>
-        <div class="gold-rule"></div>
-        <div class="pres-item fi">
-          <div class="pres-type">Oral &amp; Poster</div>
-          <div class="pres-desc">
-            American Society for Nutrition Annual Conference, Orlando, USA, May–June 2025
-            <span class="pres-award">Robert Suskind &amp; Leslie Lewinter-Suskind Pediatric Nutrition Award · Emerging Leaders in Nutrition Science Poster Finalist</span>
-          </div>
-        </div>
-        <div class="pres-item fi">
-          <div class="pres-type">VIP Invited</div>
-          <div class="pres-desc">13th Microbiome &amp; Probiotics R&amp;D and Business Collaboration Forum, San Diego, USA, October 2025</div>
-        </div>
-        <div class="pres-item fi">
-          <div class="pres-type">Poster</div>
-          <div class="pres-desc">
-            IMPACTT Microbiome Conference, Canmore, Canada, September 2025
-            <span class="pres-award">Travel Award Recipient</span>
-          </div>
-        </div>
-        <div class="pres-item fi">
-          <div class="pres-type">Poster</div>
-          <div class="pres-desc">Child Health Evaluative Sciences &amp; Neurosciences Retreat, Toronto, Canada, June 2025</div>
-        </div>
-        <div class="pres-item fi">
-          <div class="pres-type">Oral</div>
-          <div class="pres-desc">Department of Nutritional Sciences, University of Toronto, November 2024</div>
-        </div>
-      </div>
-    </div>
-
-  </section><!-- /research -->
-
-
-  <!-- ==================== SECTION 4: CONSULTING ==================== -->
-  <section id="consulting">
-
-    <div class="section-header card">
-      <div class="wrap">
-        <span class="label">Consulting &amp; Services</span>
-        <h2 class="section-heading fi">Consulting &amp; Services</h2>
-        <p class="section-subheading fi d1">Science-driven strategy for organisations that want to lead.</p>
-        <p class="consulting-intro fi d2">Jennifer brings doctoral-level expertise in microbiome science, clinical research, data analytics, and scientific communication to organisations navigating complex evidence landscapes. Her consulting spans life sciences, health tech, social impact, and brand strategy.</p>
-      </div>
-    </div>
-
-    <!-- Service Cards -->
-    <div class="services-section">
-      <div class="services-inner">
-        <div class="services-grid">
-          <div class="service-card fi">
-            <div class="svc-num">01</div>
-            <h3>Grant &amp; Scientific Writing</h3>
-            <p>Drafting and editing research proposals, NIH/CIHR-style grants, technical white papers, and manuscripts for biotech and academic clients. Built on a track record of peer-reviewed publications in top-tier journals.</p>
-          </div>
-          <div class="service-card fi d1">
-            <div class="svc-num">02</div>
-            <h3>Bioinformatics &amp; Data Analytics</h3>
-            <p>Microbiome data analysis, multi-omics integration, statistical modelling, and custom bioinformatics pipelines. Expert in R, Python, QIIME2, HUMAnN3, MetaPhlAn4, and reproducible workflow development.</p>
-          </div>
-          <div class="service-card fi d2">
-            <div class="svc-num">03</div>
-            <h3>Clinical Research &amp; Strategy</h3>
-            <p>Study design, protocol development, RCT coordination, secondary analysis, and regulatory submissions. Experienced across multi-site international clinical programs.</p>
-          </div>
-          <div class="service-card fi">
-            <div class="svc-num">04</div>
-            <h3>Scientific Communication &amp; Knowledge Translation</h3>
-            <p>Translating complex science into clear strategies, HCP communications, and funded outcomes for biotech, health tech, and academic clients. Tailored for diverse audiences from clinicians to investors.</p>
-          </div>
-          <div class="service-card fi d1">
-            <div class="svc-num">05</div>
-            <h3>Consulting &amp; Brand Strategy</h3>
-            <p>Positioning, data storytelling, and product narratives for early-stage life science and health ventures. Helping founders and scientists articulate their vision and communicate with clarity across web, pitch, and investor materials.</p>
-          </div>
-          <div class="service-card fi d2">
-            <div class="svc-num">06</div>
-            <h3>Research &amp; Evidence Strategy</h3>
-            <p>Advising organisations on how to use evidence strategically — for positioning, policy, funding, and impact. Connecting scientific findings to business and social outcomes.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Verax Partners Callout -->
-    <div style="background: var(--bg-secondary); border-top: 1px solid rgba(97,122,148,0.3); border-bottom: 1px solid rgba(97,122,148,0.3); padding: 2.8rem 2.5rem;">
-      <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:3rem; flex-wrap:wrap;">
-        <div style="flex-shrink:0;">
-          <span style="font-family:var(--font-body); font-size:0.65rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-gold-light); display:block; margin-bottom:0.5rem;">Pro Bono Consulting</span>
-          <span style="font-family:var(--font-display); font-size:2rem; font-style:italic; font-weight:300; color:var(--text-primary);">Verax Partners</span>
-        </div>
-        <div style="width:1px; height:48px; background:rgba(97,122,148,0.35); flex-shrink:0;"></div>
-        <p style="font-size:0.95rem; color:var(--text-secondary); max-width:600px; margin:0; line-height:1.75;">Jennifer serves as a pro bono consultant through Verax Partners, applying her research and strategic expertise to mission-driven organisations that operate in resource-constrained environments.</p>
-      </div>
-    </div>
-
-    <!-- Clients + CTA -->
-    <div class="clients-section">
-      <div class="clients-grid">
-        <div>
-          <span class="label">Clients</span>
-          <h3 class="section-heading fi" style="font-size: clamp(1.5rem, 2.4vw, 2rem);">Who Jennifer Works With</h3>
-          <ul class="clients-list">
-            <li class="fi">Biotech and health tech startups</li>
-            <li class="fi d1">Academic research teams</li>
-            <li class="fi d2">NGOs and social impact organisations</li>
-            <li class="fi">Life science brands and consulting firms</li>
-            <li class="fi d1">Mission-driven founders</li>
-          </ul>
-        </div>
-        <div class="cta-card fi">
-          <h3>Ready to work together?</h3>
-          <p>Jennifer's consulting engagements are selective and collaborative. Reach out to discuss your project, timeline, and how her expertise can serve your goals.</p>
-          <a href="#contact" class="btn-gold">Get In Touch</a>
-        </div>
-      </div>
-    </div>
-
-  </section><!-- /consulting -->
-
-
-  <!-- ==================== SECTION 5: SPEAKING & ADVOCACY ==================== -->
-  <section id="speaking">
-
-    <div class="section-header card">
-      <div class="wrap">
-        <span class="label">Speaking &amp; Advocacy</span>
-        <h2 class="section-heading fi">Speaking &amp; Advocacy</h2>
-        <p class="section-subheading fi d1">For the girl who was told the world wasn't built for her.</p>
-      </div>
-    </div>
-
-    <!-- Intro + Talk Topics + Photo -->
-    <div class="speaking-grid">
-      <div class="speaking-photo-col fi">
-        <!-- Blue blazer, different crop — Speaking page; About uses plaid blazer per Section 5 of brief -->
-        <img
-          src="Jennifer_Onuora_Headshot.JPG"
-          alt="Dr. Jennifer C. Onuora — Speaker and Advocate"
-          loading="lazy"
-        >
-      </div>
-      <div class="speaking-text-col">
-        <p class="speaking-intro-p fi">Jennifer speaks on the intersection of science, equity, and ambition — drawing on her journey from Ebonyi State, Nigeria to the world's leading research institutions. Her talks are grounded in data, personal narrative, and an unshakeable belief that representation and rigour are not in tension.</p>
-        <h3 class="fi">Talk Topics</h3>
-        <ul class="topics-list">
-          <li class="fi"><span class="topic-dash">—</span>The Microbiome and Global Health Equity: What We Don't Know Is Who We've Left Out</li>
-          <li class="fi d1"><span class="topic-dash">—</span>From Nigeria to Nature: Navigating Science as a First-Generation International Researcher</li>
-          <li class="fi"><span class="topic-dash">—</span>Building a Research Career Without a Roadmap</li>
-          <li class="fi d1"><span class="topic-dash">—</span>Girl Child Education, Science Mentorship, and the SDGs</li>
-          <li class="fi"><span class="topic-dash">—</span>Evidence-Based Leadership: How Scientists Can Shape Policy and Business</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Ellveris -->
-    <div class="ellveris-section">
-      <div class="ellveris-grid">
-        <div>
-          <span class="label">Platform</span>
-          <div class="ellveris-wordmark">Ellveris</div>
-        </div>
-        <div class="ellveris-body">
-          <p class="fi">Jennifer is the founder of <a href="https://ellveris.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent-gold); border-bottom:1px solid var(--border-subtle); transition:border-color 0.22s ease;">Ellveris</a> (ellveris.com), a mentorship and women's health platform she established to support underprivileged Nigerian and African girls through education, career guidance, and personal development. Ellveris is now expanding globally to scale access to mentorship and women's health resources worldwide.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- UN SDGs & Mentorship -->
-    <div class="advocacy-section">
-      <div class="advocacy-grid">
-        <div class="adv-block">
-          <span class="label">United Nations</span>
-          <h3 class="fi">UN Sustainable Development Goals</h3>
-          <div class="gold-rule"></div>
-          <div class="sdg-tags fi">
-            <span class="sdg-tag">SDG 3 · Good Health &amp; Well-Being</span>
-            <span class="sdg-tag">SDG 4 · Quality Education</span>
-            <span class="sdg-tag">SDG 5 · Gender Equality</span>
-          </div>
-          <p class="fi">Jennifer received a United Nations recognition for her voluntary contributions to the Sustainable Development Goals in Nigeria in 2018, with particular focus on SDG 3 (Good Health and Well-Being), SDG 4 (Quality Education), and SDG 5 (Gender Equality). She is a longstanding advocate for girl child education in the African context.</p>
-        </div>
-        <div class="adv-block">
-          <span class="label">Mentorship</span>
-          <h3 class="fi">Mentorship &amp; Community</h3>
-          <div class="gold-rule"></div>
-          <p class="fi">Throughout her career, Jennifer has mentored prospective African graduate students through the Exceptional Scholars Academy, undergraduate students through the University of Toronto's Nutritional Sciences Mentorship Program, and secondary school girls as a senior biology teacher and mentor in Nigeria.</p>
-        </div>
-      </div>
-    </div>
-
-  </section><!-- /speaking -->
-
-
-  <!-- ==================== SECTION 6: CONTACT ==================== -->
-  <section id="contact">
-
-    <div class="section-header dark">
-      <div class="wrap">
-        <span class="label">Contact</span>
-        <h2 class="section-heading fi">Get In Touch</h2>
-        <p class="contact-subheader fi d1">For research collaborations, consulting enquiries, speaking invitations, or media requests.</p>
-      </div>
-    </div>
-
-    <div class="contact-grid">
-      <!-- Form -->
-      <form class="contact-form" id="contactForm" novalidate>
-        <div class="form-group">
-          <label class="form-label" for="fname">Name</label>
-          <input class="form-input" type="text" id="fname" name="name" autocomplete="name" required placeholder="Your full name">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="femail">Email</label>
-          <input class="form-input" type="email" id="femail" name="email" autocomplete="email" required placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="forg">Organisation <span class="opt">(optional)</span></label>
-          <input class="form-input" type="text" id="forg" name="organisation" autocomplete="organization" placeholder="Your organisation">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="fenquiry">Type of Enquiry</label>
-          <select class="form-select" id="fenquiry" name="enquiry">
-            <option value="">Select enquiry type</option>
-            <option value="Research Collaboration">Research Collaboration</option>
-            <option value="Consulting">Consulting</option>
-            <option value="Speaking">Speaking</option>
-            <option value="Media">Media</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="fmessage">Message</label>
-          <textarea class="form-textarea" id="fmessage" name="message" required placeholder="Tell Dr. Onuora about your project or enquiry…"></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Message</button>
-      </form>
-
-      <!-- Direct Contact -->
-      <div class="contact-info fi">
-        <h3>Direct Contact</h3>
-        <div class="ci-item">
-          <span class="ci-label">Email</span>
-          <span class="ci-value"><a href="mailto:jennifer.c.onuora@gmail.com">jennifer.c.onuora@gmail.com</a></span>
-        </div>
-        <div class="ci-item">
-          <span class="ci-label">LinkedIn</span>
-          <span class="ci-value"><a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener noreferrer">linkedin.com/in/jenniferconuora</a></span>
-        </div>
-        <div class="ci-item">
-          <span class="ci-label">GitHub</span>
-          <span class="ci-value"><a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com/[your handle]</a></span>
-        </div>
-        <div class="ci-item">
-          <span class="ci-label">ORCiD</span>
-          <span class="ci-value"><a href="https://orcid.org" target="_blank" rel="noopener noreferrer">orcid.org/[your ORCiD]</a></span>
-        </div>
-        <div class="ci-item">
-          <span class="ci-label">Based In</span>
-          <span class="ci-value">Toronto, Canada</span>
-        </div>
-      </div>
-    </div>
-
-  </section><!-- /contact -->
-
-
-  <!-- ==================== FOOTER ==================== -->
+  <!-- ── Footer ── -->
   <footer>
     <div class="footer-inner">
-      <p class="footer-copy">© 2026 Dr. Jennifer C. Onuora · Toronto, Canada</p>
+      <p class="footer-copy">© 2026 Dr. Jennifer C. Onuora</p>
       <div class="footer-social">
-        <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com"                      target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://orcid.org"                       target="_blank" rel="noopener noreferrer">ORCiD</a>
+        <a href="https://www.youtube.com/@DrJenniferOnuora" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/drjenniferonuora" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
       </div>
     </div>
   </footer>
 
-
-  <!-- ==================== JAVASCRIPT ==================== -->
   <script>
     'use strict';
-
-    /* ---- Hamburger ---- */
-    const hamburger   = document.getElementById('hamburger');
-    const mobileMenu  = document.getElementById('mobileMenu');
-
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('open');
       hamburger.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', String(open));
     });
-
-    function closeMobile() {
-      mobileMenu.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-
-    /* ---- Smooth scroll with nav-height offset ---- */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();
-        closeMobile();
-        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'));
-        const top  = target.getBoundingClientRect().top + window.scrollY - navH;
-        window.scrollTo({ top, behavior: 'smooth' });
+    document.querySelectorAll('.mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
       });
     });
-
-    /* ---- Active nav link on scroll ---- */
-    const sections  = Array.from(document.querySelectorAll('section[id]'));
-    const navAnchors = document.querySelectorAll('.nav-links a');
-
-    const navObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navAnchors.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
-          });
-        }
-      });
-    }, { threshold: 0.25, rootMargin: '-64px 0px -30% 0px' });
-
-    sections.forEach(s => navObserver.observe(s));
-
-    /* ---- Fade-in on scroll ---- */
-    const fadeEls = document.querySelectorAll('.fi');
-
     const fadeObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
-
-    fadeEls.forEach(el => fadeObserver.observe(el));
-
-    /* ---- Contact form → mailto ---- */
-    document.getElementById('contactForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const name    = document.getElementById('fname').value.trim();
-      const email   = document.getElementById('femail').value.trim();
-      const org     = document.getElementById('forg').value.trim();
-      const enquiry = document.getElementById('fenquiry').value;
-      const message = document.getElementById('fmessage').value.trim();
-
-      if (!name || !email || !message) {
-        alert('Please fill in your name, email, and message before sending.');
-        return;
-      }
-
-      const subject = encodeURIComponent(`Website Enquiry — ${enquiry || 'General'} — ${name}`);
-      const body    = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nOrganisation: ${org || 'N/A'}\nEnquiry Type: ${enquiry || 'N/A'}\n\n${message}`
-      );
-      window.location.href = `mailto:jennifer.c.onuora@gmail.com?subject=${subject}&body=${body}`;
-    });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fi').forEach(el => fadeObserver.observe(el));
   </script>
 
 </body>

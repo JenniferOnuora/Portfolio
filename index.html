@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr. Jennifer C. Onuora, PhD | Microbiome Scientist · Consultant · Advocate</title>
-  <meta name="description" content="Dr. Jennifer C. Onuora is a PhD-trained microbiome scientist, entrepreneur, and advocate whose work sits at the intersection of global child health, data science, and social impact.">
+  <title>Dr. Jennifer C. Onuora | Scientist · Consultant · Advocate</title>
+  <meta name="description" content="Dr. Jennifer C. Onuora is a scientist, consultant, and advocate whose work sits at the intersection of global child health, data science, and social impact.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
       --accent-vivid:      #617A94;   /* vibrant steel — buttons, rules, dots */
 
       /* ── Text ── */
-      --text-primary:      #E8EDF5;   /* cool crisp white */
-      --text-secondary:    #8FA0B2;   /* readable muted blue-grey */
+      --text-primary:      #EDF1F7;   /* cool crisp white */
+      --text-secondary:    #9AAEC2;   /* readable muted blue-grey — lifted for legibility */
       --text-gold:         #AFBCCB;   /* light steel */
 
       /* ── Borders ── */
@@ -351,32 +351,38 @@
     .hero-photo {
       position: relative;
       overflow: hidden;
-      background: var(--bg-secondary);
+      background: var(--bg-primary);
     }
     .hero-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
+      /* Cool blue-slate tint to marry the white photo bg with the dark site */
+      filter: brightness(0.96) saturate(0.88);
+      mix-blend-mode: luminosity;
     }
-    /* Gradient bleed from left to merge with dark bg */
+    /* Colour wash layer — sits under the gradients */
     .hero-photo::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, var(--bg-primary) 0%, transparent 18%);
-      z-index: 1;
+      background:
+        linear-gradient(to right,  var(--bg-primary) 0%, transparent 32%),
+        linear-gradient(to left,   rgba(17,24,32,0.55) 0%, transparent 30%),
+        linear-gradient(to top,    rgba(17,24,32,0.70) 0%, transparent 38%);
+      z-index: 2;
       pointer-events: none;
     }
-    /* Subtle vignette bottom */
+    /* Colour tint overlay — unifies photo tone with palette */
     .hero-photo::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 30%;
-      background: linear-gradient(to top, rgba(17,24,32,0.6) 0%, transparent 100%);
+      inset: 0;
+      background: rgba(28, 39, 56, 0.32);
       z-index: 1;
       pointer-events: none;
+      mix-blend-mode: multiply;
     }
 
     /* Highlight Strip */
@@ -1256,20 +1262,14 @@
     <!-- Hero -->
     <div class="hero">
       <div class="hero-copy fi">
-        <p class="hero-eyebrow">Toronto, Canada · drjenniferonuora.com</p>
-        <h1 class="hero-name">Dr. Jennifer C. Onuora, PhD</h1>
-        <p class="hero-tagline">Microbiome Scientist. Consultant. Advocate.</p>
-        <p class="hero-body">Generating knowledge that matters — from the infant gut microbiome in Bangladesh to the boardrooms and communities that shape global health.</p>
-        <div class="hero-ctas">
-          <a href="#research"   class="btn-gold">View Research</a>
-          <a href="#consulting" class="btn-outline">Work With Me</a>
-        </div>
+        <h1 class="hero-name">Dr. Jennifer C. Onuora</h1>
+        <p class="hero-tagline">Scientist. Consultant. Advocate.</p>
       </div>
       <div class="hero-photo">
         <!-- Blue blazer, natural smile — Home hero per Section 5 of brief -->
         <img
           src="IMG_0355%202.JPG"
-          alt="Dr. Jennifer C. Onuora, PhD — Microbiome Scientist, Consultant, and Advocate"
+          alt="Dr. Jennifer C. Onuora — Scientist, Consultant, and Advocate"
           loading="eager"
         >
       </div>
@@ -1307,7 +1307,7 @@
       <div class="bio-teaser-grid">
         <div class="fi">
           <span class="label">About Jennifer</span>
-          <h2>Scientist. Mentor. Builder.</h2>
+          <h2>Scientist. Consultant. Advocate.</h2>
           <div class="gold-rule"></div>
           <p>Jennifer is a PhD-trained microbiome scientist whose doctoral research produced some of the most densely sampled infant gut microbiome data ever generated from a low- and middle-income country. She combines rigorous scientific training with entrepreneurial leadership and a lifelong commitment to the health and education of women and girls worldwide.</p>
           <br>
@@ -1317,7 +1317,6 @@
           <span class="label">Research &amp; Professional Affiliations</span>
           <div style="font-family: var(--font-display); font-size: 1rem; color: var(--text-secondary); line-height: 2.2; letter-spacing: 0.015em;">
             American Society for Nutrition<br>
-            ICN-IUNS International Congress, Paris<br>
             Gates Foundation SEPSiS Program<br>
             Cell Host &amp; Microbe<br>
             Knight Lab, UC San Diego<br>
@@ -1334,8 +1333,6 @@
         <p class="inst-names">
           American Society for Nutrition
           <span class="sep">·</span>
-          ICN-IUNS Paris
-          <span class="sep">·</span>
           Gates Foundation SEPSiS Program
           <span class="sep">·</span>
           Cell Host &amp; Microbe
@@ -1349,6 +1346,14 @@
 
   </section><!-- /home -->
 
+  <!-- Pull Quote — immediately after Home -->
+  <div class="pullquote-section">
+    <div class="pullquote-inner">
+      <p class="pullquote fi">"Science that doesn't reach the people who need it most is science that hasn't finished its job."</p>
+      <p class="pullquote-attr fi d1">— Jennifer C. Onuora</p>
+    </div>
+  </div>
+
 
   <!-- ==================== SECTION 2: ABOUT ==================== -->
   <section id="about">
@@ -1357,7 +1362,7 @@
       <div class="wrap">
         <span class="label">About</span>
         <h2 class="section-heading fi">About Jennifer</h2>
-        <p class="section-subheading fi d1">Scientist. Mentor. Builder.</p>
+        <p class="section-subheading fi d1">Scientist. Consultant. Advocate.</p>
       </div>
     </div>
 
@@ -1433,7 +1438,7 @@
           <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Emerging Leaders in Nutrition Science Poster Award, American Society for Nutrition — Top 10% of nearly 600 submissions</div></div>
           <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Doctoral Completion Award, Temerty Faculty of Medicine, University of Toronto</div></div>
           <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Travel Award, IMPACTT Microbiome Conference</div></div>
-          <div class="award-item fi"><div class="award-year">2024</div><div class="award-desc">Honorable Mention, DNS Research Conference, University of Toronto</div></div>
+          <div class="award-item fi"><div class="award-year">2025</div><div class="award-desc">Honorable Mention, DNS Research Conference, University of Toronto</div></div>
           <div class="award-item fi"><div class="award-year">2018</div><div class="award-desc">Commonwealth Master's Scholarship, UK Government and Newcastle University — fewer than 1% of international applicants globally</div></div>
           <div class="award-item fi"><div class="award-year">2018</div><div class="award-desc">United Nations Recognition for Voluntary Service, UN, Bonn, Germany</div></div>
           <div class="award-item fi"><div class="award-year">2017</div><div class="award-desc">Best Graduating Student, Biotechnology Department, Ebonyi State University, Nigeria</div></div>
@@ -1507,15 +1512,6 @@
       </div>
     </div>
 
-    <!-- Examiner Endorsement -->
-    <div class="endorsement-section">
-      <div class="endorsement-inner">
-        <span class="label" style="justify-content:center; display:flex; letter-spacing:0.14em;">External Examiner Endorsement</span>
-        <blockquote class="endorsement-quote fi">"Among the most densely sampled infant microbiome cohorts reported from a low- and middle-income country to date... I judge the thesis to meet and exceed the standards expected for the PhD degree. As such, I believe this thesis meets the standard of excellence for consideration for a dissertation award."</blockquote>
-        <p class="endorsement-attr fi d1">— Dr. Marie-Claire Arrieta, UCalgary Research Excellence Chair</p>
-      </div>
-    </div>
-
     <!-- Publications -->
     <div class="pubs-section">
       <div class="pubs-inner">
@@ -1566,10 +1562,6 @@
             IMPACTT Microbiome Conference, Canmore, Canada, September 2025
             <span class="pres-award">Travel Award Recipient</span>
           </div>
-        </div>
-        <div class="pres-item fi">
-          <div class="pres-type">Poster</div>
-          <div class="pres-desc">ICN-IUNS International Congress of Nutrition, Paris, France, August 2025</div>
         </div>
         <div class="pres-item fi">
           <div class="pres-type">Poster</div>
@@ -1742,14 +1734,6 @@
       </div>
     </div>
 
-    <!-- Pull Quote -->
-    <div class="pullquote-section">
-      <div class="pullquote-inner">
-        <p class="pullquote fi">"Science that doesn't reach the people who need it most is science that hasn't finished its job."</p>
-        <p class="pullquote-attr fi d1">— Jennifer C. Onuora</p>
-      </div>
-    </div>
-
   </section><!-- /speaking -->
 
 
@@ -1829,7 +1813,7 @@
   <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="footer-inner">
-      <p class="footer-copy">© 2026 Dr. Jennifer C. Onuora, PhD · Toronto, Canada</p>
+      <p class="footer-copy">© 2026 Dr. Jennifer C. Onuora · Toronto, Canada</p>
       <div class="footer-social">
         <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://github.com"                      target="_blank" rel="noopener noreferrer">GitHub</a>

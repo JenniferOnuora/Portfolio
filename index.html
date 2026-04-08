@@ -534,6 +534,22 @@
     .bio-paras p { font-size: 1.03rem; margin-bottom: 1.6rem; }
     .bio-paras p:last-child { margin-bottom: 0; }
 
+    .bio-affiliations { margin-top: 2.4rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle); }
+    .bio-affil-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+    .bio-affil-list span {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      padding: 0.28rem 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
     .about-photo-col {
       position: sticky;
       top: calc(var(--nav-h) + 2rem);
@@ -1318,29 +1334,6 @@
       </div>
     </div>
 
-    <!-- Bio Teaser -->
-    <div class="bio-teaser">
-      <div class="bio-teaser-grid">
-        <div class="fi">
-          <span class="label">About Jennifer</span>
-          <h2>Scientist. Consultant. Advocate.</h2>
-          <div class="gold-rule"></div>
-          <p>Jennifer is a PhD-trained microbiome scientist whose doctoral research produced some of the most densely sampled infant gut microbiome data ever generated from a low- and middle-income country. She combines rigorous scientific training with entrepreneurial leadership and a lifelong commitment to the health and education of women and girls worldwide.</p>
-          <br>
-          <a href="#about" class="bio-link">Read Full Bio</a>
-        </div>
-        <div class="fi d2">
-          <span class="label">Research &amp; Professional Affiliations</span>
-          <div style="font-family: var(--font-display); font-size: 1rem; color: var(--text-secondary); line-height: 2.2; letter-spacing: 0.015em;">
-            American Society for Nutrition<br>
-            Gates Foundation SEPSiS Program<br>
-            Knight Lab, UC San Diego<br>
-            University of Toronto / SickKids Research Institute
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Institutions Strip -->
     <div class="institutions-strip">
       <div class="institutions-strip-inner">
@@ -1372,13 +1365,22 @@
       </div>
     </div>
 
-    <!-- Biography + Photo -->
+    <!-- Biography + Photo + Affiliations -->
     <div class="about-grid">
       <div class="bio-paras">
         <p class="fi">Jennifer C. Onuora is a PhD-trained microbiome scientist, entrepreneur, and advocate whose work sits at the intersection of global child health, data science, and social impact. She completed her doctoral degree in Nutritional Sciences at the University of Toronto's Temerty Faculty of Medicine, where she achieved a perfect GPA of 4.0/4.0 and was recognised as the most outstanding doctoral graduate by her department.</p>
         <p class="fi d1">Her doctoral research generated one of the most comprehensive characterisations of early-life gut microbiome development ever produced from an urban low- and middle-income country, examining over 55 mother-infant pairs across 385 stool samples and leading a 305-participant randomised controlled trial funded by the Bill and Melinda Gates Foundation. Her findings challenged prevailing assumptions about how infant gut communities develop, demonstrating that environmental and horizontal transmission rivals the vertical maternal transmission that Western-centred research had long emphasised.</p>
         <p class="fi d2">Jennifer holds an MSc from Newcastle University, England (Commonwealth Master's Scholarship, awarded to fewer than 1% of international applicants globally), and a BSc in Biotechnology with First Class Honours from Ebonyi State University, Nigeria, where she was recognised as Best Graduating Student. In secondary school, she received the Overall Best in Sciences Award and the Exceptional Scholars Award for a record-breaking score in the Nigerian Diocesan Council examinations in 2012.</p>
         <p class="fi d3">Beyond research, Jennifer is the founder of Ellveris, a mentorship and women's health platform expanding globally, and serves as a pro bono consultant through Verax Partners. She is a Research and Development Scientist at Vitract, where she leads bioinformatics infrastructure and clinical evidence generation, and is actively pursuing a postdoctoral fellowship focused on maternal and child health.</p>
+        <div class="bio-affiliations fi d4">
+          <span class="label" style="margin-top:2rem;">Research &amp; Professional Affiliations</span>
+          <div class="bio-affil-list">
+            <span>American Society for Nutrition</span>
+            <span>Gates Foundation SEPSiS Program</span>
+            <span>Knight Lab, UC San Diego</span>
+            <span>University of Toronto / SickKids Research Institute</span>
+          </div>
+        </div>
       </div>
       <div class="about-photo-col fi d1">
         <!-- Plaid blazer, arms crossed — About page per Section 5 of brief -->

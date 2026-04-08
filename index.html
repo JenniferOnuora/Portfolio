@@ -351,38 +351,32 @@
     .hero-photo {
       position: relative;
       overflow: hidden;
-      background: var(--bg-primary);
+      background: var(--bg-secondary);
     }
     .hero-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
-      /* Cool blue-slate tint to marry the white photo bg with the dark site */
-      filter: brightness(0.96) saturate(0.88);
-      mix-blend-mode: luminosity;
     }
-    /* Colour wash layer — sits under the gradients */
+    /* Gradient bleed from left to merge with dark bg */
     .hero-photo::before {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(to right,  var(--bg-primary) 0%, transparent 32%),
-        linear-gradient(to left,   rgba(17,24,32,0.55) 0%, transparent 30%),
-        linear-gradient(to top,    rgba(17,24,32,0.70) 0%, transparent 38%);
-      z-index: 2;
+      background: linear-gradient(to right, var(--bg-primary) 0%, transparent 18%);
+      z-index: 1;
       pointer-events: none;
     }
-    /* Colour tint overlay — unifies photo tone with palette */
+    /* Subtle vignette bottom */
     .hero-photo::after {
       content: '';
       position: absolute;
-      inset: 0;
-      background: rgba(28, 39, 56, 0.32);
+      bottom: 0; left: 0; right: 0;
+      height: 30%;
+      background: linear-gradient(to top, rgba(17,24,32,0.6) 0%, transparent 100%);
       z-index: 1;
       pointer-events: none;
-      mix-blend-mode: multiply;
     }
 
     /* Highlight Strip */

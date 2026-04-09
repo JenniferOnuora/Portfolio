@@ -379,14 +379,28 @@
       btn.textContent = 'Sending…';
       btn.disabled = true;
 
-      const org     = document.getElementById('forg').value.trim() || 'N/A';
+      const org     = document.getElementById('forg').value.trim();
       const enquiry = document.getElementById('fenquiry').value || 'General';
+      const body = [
+        '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+        `NAME             ${name}`,
+        `EMAIL            ${email}`,
+        org ? `ORGANISATION     ${org}` : null,
+        `ENQUIRY TYPE     ${enquiry}`,
+        '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+        '',
+        message,
+        '',
+        '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+        'Sent via jenniferonuora.com'
+      ].filter(l => l !== null).join('\n');
+
       const data = {
         access_key: WEB3FORMS_KEY,
-        subject:    `[${enquiry}] ${name} <${email}>`,
-        from_name:  'jenniferonuora.com Contact Form',
+        subject:    `New Enquiry · ${enquiry} · ${name}`,
+        from_name:  'jenniferonuora.com',
         replyto:    email,
-        message: `From: ${name}\nEmail: ${email}\nOrganisation: ${org}\nEnquiry: ${enquiry}\n\n---\n\n${message}`
+        message:    body
       };
 
       try {

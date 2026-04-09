@@ -4,79 +4,158 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulting | Dr. Jennifer C. Onuora</title>
-  <meta name="description" content="Science-driven consulting by Dr. Jennifer C. Onuora: microbiome science, clinical research, bioinformatics, and scientific communication.">
+  <meta name="description" content="Healthcare innovation through clinical evidence and strategy. Dr. Jennifer C. Onuora's consulting work spans microbiome science, clinical research, bioinformatics, and scientific communication.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ── What Drives the Work ── */
-    .values-section {
-      background: var(--bg-accent);
-      border-top: 1px solid rgba(97, 122, 148, 0.4);
-      padding: 5rem 2.5rem;
-    }
-    .values-grid {
-      max-width: 1200px;
-      margin: 2.5rem auto 0;
+    /* ── Consulting cover: text left, photo right ── */
+    .consulting-cover {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
+      grid-template-columns: 1.1fr 1fr;
+      min-height: calc(100vh - var(--nav-h));
+      padding-top: var(--nav-h);
+      background: var(--bg-primary);
     }
-    .value-card {
-      background: rgba(13, 14, 18, 0.55);
-      border: 1px solid rgba(175, 188, 203, 0.2);
-      padding: 2.5rem;
-      backdrop-filter: blur(4px);
-      transition: border-color 0.28s ease, transform 0.28s ease, background 0.28s ease;
+    .consulting-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 2.5rem;
     }
-    .value-card:hover { border-color: rgba(175,188,203,0.5); transform: translateY(-3px); background: rgba(13,14,18,0.72); }
-    .value-card h3 {
+    .consulting-text-col h1 {
       font-family: var(--font-display);
-      font-size: 1.55rem;
-      color: var(--accent-light);
-      margin-bottom: 0.9rem;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
     }
-    .value-card p { font-size: 0.92rem; color: rgba(237,241,247,0.78); }
+    .consulting-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent-light);
+      margin-bottom: 2rem;
+    }
+    .consulting-intro {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      max-width: 520px;
+    }
+    .consulting-photo-col {
+      position: sticky;
+      top: var(--nav-h);
+      height: calc(100vh - var(--nav-h));
+      overflow: hidden;
+      background: var(--bg-secondary);
+    }
+    .consulting-photo-col img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .consulting-photo-col::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg-primary) 0%, transparent 20%);
+      z-index: 1;
+      pointer-events: none;
+    }
 
-    /* ── Current Engagements ── */
+    /* ── Engagements ── */
     .engagements-section {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border-subtle);
       padding: 5rem 2.5rem;
     }
     .engagements-inner { max-width: 1200px; margin: 0 auto; }
-    .engagement-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 2.5rem;
-    }
+    .engagement-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; }
     .engagement-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      padding: 2.8rem;
-      transition: border-color 0.28s ease;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: start;
     }
-    .engagement-card:hover { border-color: var(--border-strong); }
-    .engagement-org {
+    .engagement-card:last-child { border-bottom: none; }
+    .engagement-logo-col {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .engagement-logo-col img {
+      max-width: 130px;
+      max-height: 56px;
+      object-fit: contain;
+      filter: brightness(0) invert(0.85) sepia(0.2) hue-rotate(180deg) saturate(0.6);
+      transition: filter 0.28s ease;
+    }
+    .engagement-logo-col img:hover { filter: none; }
+    .engagement-logo-wordmark {
       font-family: var(--font-display);
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-style: italic;
       font-weight: 300;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
+      color: var(--accent-light);
     }
+    .engagement-body-col {}
     .engagement-role {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--accent-light);
       font-weight: 500;
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.8rem;
       display: block;
     }
-    .engagement-card p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.78; }
+    .engagement-org-name {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .engagement-body-col p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ── What Drives the Work ── */
+    .drives-section {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-subtle);
+      padding: 4rem 2.5rem;
+    }
+    .drives-inner { max-width: 1200px; margin: 0 auto; }
+    .drives-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .drive-item {
+      padding: 1.6rem 2rem;
+      border: 1px solid var(--border-subtle);
+      background: rgba(13,14,18,0.4);
+    }
+    .drive-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--accent-light);
+      margin-bottom: 0.6rem;
+    }
+    .drive-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.72; }
 
     /* ── Areas of Expertise ── */
     .expertise-section {
@@ -85,42 +164,32 @@
       padding: 5rem 2.5rem;
     }
     .expertise-inner { max-width: 1200px; margin: 0 auto; }
-    .expertise-grid {
+    .expertise-list { margin-top: 2.5rem; }
+    .expertise-item {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border-subtle);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
-      margin-top: 2.5rem;
+      grid-template-columns: 260px 1fr;
+      gap: 3rem;
+      align-items: start;
     }
-    .expertise-card {
-      background: var(--bg-secondary);
-      border: 1px solid rgba(97, 122, 148, 0.28);
-      padding: 2.5rem;
-      transition: border-color 0.28s ease, transform 0.28s ease;
-    }
-    .expertise-card:hover { border-color: var(--border-strong); transform: translateY(-4px); }
-    .expertise-num {
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 1.1rem;
-    }
-    .expertise-card h3 {
+    .expertise-item:last-child { border-bottom: none; }
+    .expertise-name {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: var(--text-primary);
-      margin-bottom: 0.9rem;
+      padding-top: 0.1rem;
+      line-height: 1.3;
     }
-    .expertise-card p { font-size: 0.88rem; line-height: 1.78; }
+    .expertise-desc { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.78; }
 
-    /* ── Clients + CTA ── */
-    .clients-section {
-      background: var(--bg-card);
+    /* ── Who Jennifer Works With + CTA ── */
+    .works-with-section {
+      background: var(--bg-secondary);
       border-top: 1px solid var(--border-subtle);
       padding: 5rem 2.5rem;
     }
-    .clients-grid {
+    .works-with-inner {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
@@ -128,42 +197,40 @@
       gap: 5rem;
       align-items: start;
     }
-    .clients-list {
-      margin-top: 1.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .clients-list li {
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border-subtle);
-      font-size: 0.95rem;
+    .works-with-body p {
+      font-size: 1.02rem;
       color: var(--text-secondary);
+      line-height: 1.85;
+      margin-top: 1.5rem;
     }
-    .cta-card {
-      background: var(--bg-secondary);
+    .cta-panel {
+      background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       padding: 3rem;
     }
-    .cta-card h3 {
+    .cta-panel h3 {
       font-family: var(--font-display);
       font-size: 1.8rem;
       color: var(--text-primary);
       margin-bottom: 1rem;
     }
-    .cta-card p { font-size: 0.95rem; margin-bottom: 2rem; }
+    .cta-panel p { font-size: 0.95rem; margin-bottom: 2rem; }
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .values-grid { grid-template-columns: 1fr 1fr; }
-      .expertise-grid { grid-template-columns: 1fr 1fr; }
-      .engagement-grid { grid-template-columns: 1fr; }
-      .clients-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .consulting-cover { grid-template-columns: 1fr; min-height: auto; }
+      .consulting-photo-col { position: relative; height: 55vh; top: 0; }
+      .consulting-photo-col::before { background: linear-gradient(to bottom, transparent 60%, var(--bg-primary) 100%); }
+      .consulting-text-col { padding: 3.5rem 2.5rem 4rem; }
+      .drives-grid { grid-template-columns: 1fr; }
+      .works-with-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .engagement-card { grid-template-columns: 120px 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
-      .values-grid { grid-template-columns: 1fr; }
-      .expertise-grid { grid-template-columns: 1fr; }
-      .values-section, .engagements-section, .expertise-section, .clients-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .consulting-text-col { padding: 3rem 1.5rem; }
+      .engagements-section, .drives-section, .expertise-section, .works-with-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .expertise-item { grid-template-columns: 1fr; gap: 0.6rem; }
+      .engagement-card { grid-template-columns: 1fr; gap: 1rem; }
     }
   </style>
 </head>
@@ -179,9 +246,6 @@
       <li><a href="advocacy.html">Advocacy</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div class="nav-scholar">
-      <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-    </div>
     <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -193,57 +257,80 @@
     <a href="consulting.html">Consulting</a>
     <a href="advocacy.html">Advocacy</a>
     <a href="contact.html">Contact</a>
-    <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
   </div>
 
-  <!-- ── Page Header ── -->
-  <div class="page-header" style="padding-top: calc(var(--nav-h) + 4rem); background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-card) 100%);">
-    <div class="wrap">
-      <span class="label">Consulting &amp; Services</span>
-      <h1 class="section-heading fi">Consulting</h1>
-      <p class="section-subheading fi d1">Science-driven strategy for organisations that want to lead.</p>
-      <p class="fi d2" style="max-width:680px; font-size:1.04rem; margin-top:1.4rem; color: var(--text-secondary); line-height: 1.8;">Jennifer brings doctoral-level expertise in microbiome science, clinical research, data analytics, and scientific communication to organisations navigating complex evidence landscapes. Her consulting spans life sciences, health technology, social impact, and brand strategy.</p>
+  <!-- ── Cover ── -->
+  <div class="consulting-cover">
+    <div class="consulting-text-col">
+      <h1 class="fi">Consulting</h1>
+      <p class="consulting-tagline fi d1">Healthcare innovation through clinical evidence and strategy.</p>
+      <p class="consulting-intro fi d2">Jennifer translates biomedical science into clear, decision-ready insights for cross-functional teams. By combining clinical research expertise and advanced analytics, she generates evidence and communicates complex findings to inform strategy, improve healthcare decisions, and strengthen patient outcomes. Engagements are selective and built on genuine collaboration.</p>
+    </div>
+    <div class="consulting-photo-col">
+      <img src="consulting_photo.jpg" alt="Dr. Jennifer C. Onuora" loading="eager">
+    </div>
+  </div>
+
+  <!-- ── Engagements ── -->
+  <div class="engagements-section">
+    <div class="engagements-inner">
+      <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Engagements</h2>
+      <div class="rule fi"></div>
+      <div class="engagement-list">
+
+        <div class="engagement-card fi">
+          <div class="engagement-logo-col">
+            <img src="logo_verax.png" alt="Verax Partners">
+          </div>
+          <div class="engagement-body-col">
+            <span class="engagement-role">Consultant</span>
+            <div class="engagement-org-name">Verax Partners</div>
+            <p>Jennifer serves as a scientific and research strategy consultant, generating and communicating clinical evidence to support decision-making, positioning, and impact measurement for mission-driven clients navigating complex evidence landscapes.</p>
+          </div>
+        </div>
+
+        <div class="engagement-card fi d1">
+          <div class="engagement-logo-col">
+            <img src="logo_halohealth.png" alt="HaloHealth">
+          </div>
+          <div class="engagement-body-col">
+            <span class="engagement-role">Fellow</span>
+            <div class="engagement-org-name">HaloHealth</div>
+            <p>Jennifer evaluates and screens early-stage health technology organisations for investment readiness, conducting scientific due diligence and applying clinical research expertise to assess the evidence base, innovation potential, and scalability of emerging health ventures.</p>
+          </div>
+        </div>
+
+        <div class="engagement-card fi d2">
+          <div class="engagement-logo-col">
+            <div class="engagement-logo-wordmark">Ellveris</div>
+          </div>
+          <div class="engagement-body-col">
+            <span class="engagement-role">Founder</span>
+            <div class="engagement-org-name">Ellveris</div>
+            <p>Jennifer founded <a href="https://ellveris.com" target="_blank" rel="noopener" style="color: var(--accent-light); border-bottom: 1px solid var(--border-subtle); transition: border-color 0.22s ease;">Ellveris</a>, a women's health and mentorship platform expanding globally, to support underprivileged girls and women through health education, career guidance, and mentorship. Ellveris operates at the intersection of evidence-based health and social impact.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <!-- ── What Drives the Work ── -->
-  <div class="values-section">
-    <div class="wrap">
-      <span class="label">Approach</span>
-      <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">What Drives the Work</h2>
-    </div>
-    <div class="values-grid">
-      <div class="value-card fi">
-        <h3>Rigour</h3>
-        <p>Every claim grounded in evidence. Every analysis built to withstand scrutiny. The standard is not what is publishable — it is what is true.</p>
-      </div>
-      <div class="value-card fi d1">
-        <h3>Impact</h3>
-        <p>Science that stays in journals is science half-finished. The measure of good work is what actually changes for the people it is meant to serve.</p>
-      </div>
-      <div class="value-card fi d2">
-        <h3>Equity</h3>
-        <p>The populations most underserved by research deserve the most rigorous attention. Evidence must be generated where it is needed most, not where it is easiest to collect.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Current Engagements ── -->
-  <div class="engagements-section">
-    <div class="engagements-inner">
-      <span class="label">Current Engagements</span>
-      <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Where Jennifer Works</h2>
-      <div class="rule fi"></div>
-      <div class="engagement-grid">
-        <div class="engagement-card fi">
-          <div class="engagement-org">Verax Partners</div>
-          <span class="engagement-role">Consultant</span>
-          <p>Jennifer serves as a strategic consultant through Verax Partners, applying her research expertise and analytical rigour to mission-driven organisations working at the intersection of science, health, and social impact.</p>
+  <div class="drives-section">
+    <div class="drives-inner">
+      <h2 class="section-heading fi" style="font-size: clamp(1.5rem, 2.4vw, 2rem);">What Drives the Work</h2>
+      <div class="drives-grid">
+        <div class="drive-item fi">
+          <h3>Rigour</h3>
+          <p>Every strategy grounded in evidence. Every recommendation built to withstand scrutiny and deliver results that last.</p>
         </div>
-        <div class="engagement-card fi d1">
-          <div class="engagement-org">HaloHealth</div>
-          <span class="engagement-role">Fellow</span>
-          <p>As a Fellow at HaloHealth, Jennifer contributes to the development of evidence-based health solutions, bringing her scientific background and clinical research experience to the platform's work in digital health innovation.</p>
+        <div class="drive-item fi d1">
+          <h3>Impact</h3>
+          <p>Science and strategy that stays in reports and journals is work half-finished. The measure is what changes for clients, patients, and communities.</p>
+        </div>
+        <div class="drive-item fi d2">
+          <h3>Equity</h3>
+          <p>The organisations and populations most underserved by existing systems deserve the most rigorous, thoughtful expertise.</p>
         </div>
       </div>
     </div>
@@ -252,69 +339,66 @@
   <!-- ── Areas of Expertise ── -->
   <div class="expertise-section">
     <div class="expertise-inner">
-      <span class="label">Services</span>
       <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Areas of Expertise</h2>
-      <div class="expertise-grid">
-
-        <div class="expertise-card fi">
-          <div class="expertise-num">01</div>
-          <h3>Grant &amp; Scientific Writing</h3>
-          <p>Drafting and editing research proposals, NIH/CIHR-style grants, technical white papers, and manuscripts for biotech and academic clients. Built on a track record of peer-reviewed publications in top-tier journals.</p>
+      <div class="rule fi"></div>
+      <div class="expertise-list">
+        <div class="expertise-item fi">
+          <div class="expertise-name">Grant and Scientific Writing</div>
+          <div class="expertise-desc">Research proposals, NIH and CIHR-style grants, technical white papers, and peer-reviewed manuscripts.</div>
         </div>
-
-        <div class="expertise-card fi d1">
-          <div class="expertise-num">02</div>
-          <h3>Bioinformatics &amp; Data Analytics</h3>
-          <p>Microbiome data analysis, multi-omics integration, statistical modelling, and custom bioinformatics pipelines for clinical and research applications.</p>
+        <div class="expertise-item fi">
+          <div class="expertise-name">Advanced Analytics and Bioinformatics</div>
+          <div class="expertise-desc">Multi-omics data analysis and integration spanning genomics, proteomics, metabolomics, and metagenomics. Custom pipeline development using industry-standard bioinformatics tools. Statistical modelling, machine learning, and reproducible workflow design for complex biological datasets.</div>
         </div>
-
-        <div class="expertise-card fi d2">
-          <div class="expertise-num">03</div>
-          <h3>Clinical Research &amp; Strategy</h3>
-          <p>Study design, protocol development, RCT coordination, secondary analysis, and regulatory submissions. Experienced across multi-site international clinical programs.</p>
+        <div class="expertise-item fi">
+          <div class="expertise-name">Clinical Research and Strategy</div>
+          <div class="expertise-desc">Study design, protocol development, randomised controlled trial coordination, secondary analysis, and regulatory submissions. Experienced across multi-site international clinical programmes spanning multiple countries.</div>
         </div>
-
-        <div class="expertise-card fi">
-          <div class="expertise-num">04</div>
-          <h3>Scientific Communication &amp; Knowledge Translation</h3>
-          <p>Translating complex science into clear strategies, HCP communications, and funded outcomes for biotech, health tech, and academic clients across diverse audiences.</p>
+        <div class="expertise-item fi">
+          <div class="expertise-name">Scientific Communication and Knowledge Translation</div>
+          <div class="expertise-desc">Translating complex science into clear strategies, clinician communications, and funded outcomes for biotech, health technology, and academic clients. Tailored for audiences ranging from bench scientists to boards and investors.</div>
         </div>
-
-        <div class="expertise-card fi d1">
-          <div class="expertise-num">05</div>
-          <h3>Consulting &amp; Brand Strategy</h3>
-          <p>Positioning, data storytelling, and product narratives for early-stage life science and health ventures. Helping founders and scientists articulate their vision with clarity.</p>
+        <div class="expertise-item fi">
+          <div class="expertise-name">Brand Strategy</div>
+          <div class="expertise-desc">Positioning, data storytelling, and product narratives for early-stage life science and health ventures. Helping founders and scientists articulate their vision with clarity across web, pitch, and investor materials.</div>
         </div>
-
-        <div class="expertise-card fi d2">
-          <div class="expertise-num">06</div>
-          <h3>Research &amp; Evidence Strategy</h3>
-          <p>Advising organisations on how to use evidence strategically — for positioning, policy, funding, and impact. Connecting scientific findings to business and social outcomes.</p>
+        <div class="expertise-item fi">
+          <div class="expertise-name">Research and Evidence Strategy</div>
+          <div class="expertise-desc">Advising organisations on how to use evidence strategically for positioning, policy, funding, and impact. Connecting scientific findings to business and social outcomes.</div>
         </div>
-
       </div>
     </div>
   </div>
 
   <!-- ── Who Jennifer Works With + CTA ── -->
-  <div class="clients-section">
-    <div class="clients-grid">
-      <div>
-        <span class="label">Clients</span>
+  <div class="works-with-section">
+    <div class="works-with-inner">
+      <div class="works-with-body">
         <h2 class="section-heading fi" style="font-size: clamp(1.5rem, 2.4vw, 2rem);">Who Jennifer Works With</h2>
-        <ul class="clients-list">
-          <li class="fi">Biotech and health technology startups</li>
-          <li class="fi d1">Academic research teams</li>
-          <li class="fi d2">NGOs and social impact organisations</li>
-          <li class="fi">Life science brands and consulting firms</li>
-          <li class="fi d1">Mission-driven founders</li>
-          <li class="fi d2">Government and international health bodies</li>
-        </ul>
+        <p class="fi d1">Biotech and health technology companies. Early-stage startups. Academic research teams. Non-governmental organisations and social impact organisations. Life science brands. Mission-driven founders.</p>
       </div>
-      <div class="cta-card fi">
-        <h3>Ready to work together?</h3>
-        <p>Jennifer's consulting engagements are selective and collaborative. Reach out to discuss your project, timeline, and how her expertise can serve your goals.</p>
+      <div class="cta-panel fi">
+        <h3>Ready to Work Together?</h3>
+        <p>Jennifer's consulting engagements are selective and built on shared purpose. Reach out to discuss your project and how her expertise can serve your goals.</p>
         <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Speaking CTA ── -->
+  <div class="speaking-cta">
+    <div class="speaking-cta-grid">
+      <div class="speaking-topics fi">
+        <span class="bold">Women's health.</span>
+        <span>Mentorship.</span>
+        <span class="bold">Global health.</span>
+        <span>Women empowerment.</span>
+        <span class="bold">Maternal and child health.</span>
+        <span>Consulting.</span>
+      </div>
+      <div class="speaking-cta-body fi d1">
+        <p>Beyond consulting, Jennifer speaks on the intersection of science, equity, and ambition. Her talks are grounded in data, personal narrative, and a commitment to showing what is possible for the next generation of women in science and leadership.</p>
+        <a href="advocacy.html" class="btn btn-outline">Speaking &amp; Advocacy</a>
       </div>
     </div>
   </div>
@@ -325,10 +409,18 @@
     <div class="footer-inner">
       <p class="footer-copy">© 2026 Dr. Jennifer C. Onuora</p>
       <div class="footer-social">
-        <a href="https://www.youtube.com/@DrJenniferOnuora" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/drjenniferonuora" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.youtube.com/@DrJenniferOnuora" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/drjenniferonuora" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ig3" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><path fill="url(#ig3)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+        </a>
       </div>
     </div>
   </footer>

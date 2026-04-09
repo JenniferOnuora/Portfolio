@@ -16,6 +16,7 @@
       grid-template-columns: 1fr 1.1fr;
       min-height: calc(100vh - var(--nav-h));
       padding-top: var(--nav-h);
+      background: var(--bg-primary);
     }
     .cover-photo {
       position: relative;
@@ -23,6 +24,7 @@
       background: var(--bg-secondary);
     }
     .cover-photo img {
+      position: absolute;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -46,18 +48,17 @@
       font-family: var(--font-display);
       font-size: clamp(2.4rem, 4vw, 3.8rem);
       font-weight: 400;
-      color: var(--text-primary);
+      color: #ffffff;
       line-height: 1.1;
       letter-spacing: -0.02em;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
-    .cover-text .section-subheading { margin-top: 0; }
     .cover-intro {
       font-size: 1.04rem;
       color: var(--text-secondary);
       line-height: 1.85;
       max-width: 520px;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     /* ── Impact sections ── */
@@ -129,7 +130,7 @@
       font-weight: 500;
     }
 
-    /* Mentorship + Speaking in two-col grid */
+    /* Dual block */
     .dual-block {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -141,6 +142,13 @@
       color: var(--text-primary);
       margin-bottom: 1rem;
     }
+    .adv-body-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.78;
+    }
+
+    /* Talk topics */
     .topics-list { margin-top: 1.2rem; }
     .topics-list li {
       padding: 0.7rem 0;
@@ -178,8 +186,8 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .advocacy-cover { grid-template-columns: 1fr; }
-      .cover-photo { min-height: 55vh; }
+      .advocacy-cover { grid-template-columns: 1fr; min-height: auto; }
+      .cover-photo { position: relative; min-height: 55vh; }
       .cover-photo::after { background: linear-gradient(to bottom, transparent 60%, var(--bg-primary) 100%); }
       .cover-text { padding: 3.5rem 2.5rem; }
       .ellveris-layout { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -204,9 +212,6 @@
       <li><a href="advocacy.html" class="active">Advocacy</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div class="nav-scholar">
-      <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-    </div>
     <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -218,20 +223,14 @@
     <a href="consulting.html">Consulting</a>
     <a href="advocacy.html">Advocacy</a>
     <a href="contact.html">Contact</a>
-    <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
   </div>
 
   <!-- ── Cover Layout ── -->
-  <div class="advocacy-cover" style="background: var(--bg-primary);">
+  <div class="advocacy-cover">
     <div class="cover-photo">
-      <img
-        src="Jennifer_Onuora_Headshot.JPG"
-        alt="Dr. Jennifer C. Onuora"
-        loading="eager"
-      >
+      <img src="Jennifer_Onuora_Headshot.JPG" alt="Dr. Jennifer C. Onuora" loading="eager">
     </div>
     <div class="cover-text">
-      <span class="label">Speaking &amp; Advocacy</span>
       <h1 class="fi">Advocacy</h1>
       <p class="section-subheading fi d1">For the girl who was told the world wasn't built for her.</p>
       <p class="cover-intro fi d2">Jennifer speaks on the intersection of science, equity, and ambition, drawing on her journey from Ebonyi State, Nigeria to the world's leading research institutions. Her talks are grounded in data, personal narrative, and an unshakeable belief that representation and rigour are not in tension.</p>
@@ -241,23 +240,22 @@
   <!-- ── Ellveris ── -->
   <div class="impact-block" style="background: var(--bg-primary);">
     <div class="impact-inner">
-      <span class="label">Platform</span>
       <div class="ellveris-layout">
         <div class="fi">
           <div class="ellveris-wordmark">Ellveris</div>
           <a class="ellveris-link" href="https://ellveris.com" target="_blank" rel="noopener">ellveris.com</a>
-          <p style="font-size:0.92rem; color: var(--text-secondary); line-height:1.78; margin-top:1.4rem;">Jennifer is the founder of Ellveris, a mentorship and women's health platform she established to support underprivileged Nigerian and African girls through education, career guidance, and personal development. Ellveris is expanding globally to scale access to mentorship and women's health resources worldwide.</p>
+          <p style="font-size:0.95rem; color: var(--text-secondary); line-height:1.8; margin-top:1.4rem;">Jennifer is the founder of <a href="https://ellveris.com" target="_blank" rel="noopener" style="color: var(--accent-light); border-bottom: 1px solid var(--border-subtle); transition: border-color 0.22s ease;">Ellveris</a>, a women's health and mentorship platform she established to support underprivileged Nigerian and African girls through education, career guidance, and personal development. Ellveris is expanding globally to scale access to women's health resources and mentorship worldwide.</p>
         </div>
         <div>
           <span class="label" style="margin-bottom:1rem;">Four Pillars</span>
           <div class="ellveris-pillars">
             <div class="pillar fi">
-              <div class="pillar-name">Mentorship</div>
-              <p>Structured one-to-one and cohort mentoring for young women navigating education and early careers.</p>
+              <div class="pillar-name">Women's Health</div>
+              <p>Evidence-based women's health resources designed for accessibility across resource settings.</p>
             </div>
             <div class="pillar fi d1">
-              <div class="pillar-name">Health Education</div>
-              <p>Evidence-based women's health resources designed for accessibility across resource settings.</p>
+              <div class="pillar-name">Mentorship</div>
+              <p>Structured one-to-one and cohort mentoring for young women navigating education and early careers.</p>
             </div>
             <div class="pillar fi d2">
               <div class="pillar-name">Career Guidance</div>
@@ -278,7 +276,6 @@
     <div class="impact-inner">
       <div class="dual-block">
         <div>
-          <span class="label">United Nations</span>
           <h2 class="adv-sub-head fi">UN Sustainable Development Goals</h2>
           <div class="rule fi"></div>
           <div class="sdg-tags fi">
@@ -286,13 +283,12 @@
             <span class="sdg-tag">SDG 4 · Quality Education</span>
             <span class="sdg-tag">SDG 5 · Gender Equality</span>
           </div>
-          <p class="fi" style="font-size:0.92rem; color: var(--text-secondary); line-height:1.78;">Jennifer received a United Nations recognition for her voluntary contributions to the Sustainable Development Goals in Nigeria in 2018, with particular focus on SDG 3 (Good Health and Well-Being), SDG 4 (Quality Education), and SDG 5 (Gender Equality). She is a longstanding advocate for girl child education in the African context.</p>
+          <p class="adv-body-text fi">Jennifer received a United Nations recognition for her voluntary contributions to the Sustainable Development Goals in Nigeria in 2018, with particular focus on SDG 3 (Good Health and Well-Being), SDG 4 (Quality Education), and SDG 5 (Gender Equality). She is a longstanding advocate for girl child education in the African context.</p>
         </div>
         <div>
-          <span class="label">Mentorship</span>
           <h2 class="adv-sub-head fi">Mentorship &amp; Community</h2>
           <div class="rule fi"></div>
-          <p class="fi" style="font-size:0.92rem; color: var(--text-secondary); line-height:1.78;">Throughout her career, Jennifer has mentored prospective African graduate students through the Exceptional Scholars Academy, undergraduate students through the University of Toronto's Nutritional Sciences Mentorship Program, and secondary school girls as a senior biology teacher and mentor in Nigeria.</p>
+          <p class="adv-body-text fi">Throughout her career, Jennifer has mentored prospective African graduate students through the Exceptional Scholars Academy, undergraduate students through the University of Toronto's Nutritional Sciences Mentorship Program, and secondary school girls as a senior biology teacher and mentor in Nigeria.</p>
         </div>
       </div>
     </div>
@@ -301,7 +297,6 @@
   <!-- ── Speaking ── -->
   <div class="impact-block" style="background: var(--bg-primary);">
     <div class="impact-inner">
-      <span class="label">Speaking</span>
       <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Talk Topics</h2>
       <div class="rule fi"></div>
       <ul class="topics-list">
@@ -329,10 +324,18 @@
     <div class="footer-inner">
       <p class="footer-copy">© 2026 Dr. Jennifer C. Onuora</p>
       <div class="footer-social">
-        <a href="https://www.youtube.com/@DrJenniferOnuora" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/drjenniferonuora" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.youtube.com/@DrJenniferOnuora" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/drjenniferonuora" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ig4" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><path fill="url(#ig4)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+        </a>
       </div>
     </div>
   </footer>

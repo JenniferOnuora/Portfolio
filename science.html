@@ -4,85 +4,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Science | Dr. Jennifer C. Onuora</title>
-  <meta name="description" content="Research overview, studies, and publications of Dr. Jennifer C. Onuora in early-life microbiome science and global child health.">
+  <meta name="description" content="Research overview and publications of Dr. Jennifer C. Onuora in early-life microbiome science, global child health, and cystic fibrosis drug discovery.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ── Thesis block ── */
-    .thesis-block {
-      background: rgba(13, 14, 18, 0.6);
-      border-left: 3px solid var(--accent-vivid);
-      padding: 2.2rem 2.8rem;
-      margin-top: 3rem;
-    }
-    .thesis-title {
-      font-family: var(--font-display);
-      font-size: 1.38rem;
-      font-style: italic;
-      color: var(--text-primary);
-      line-height: 1.45;
-      margin-bottom: 0.9rem;
-    }
-    .thesis-meta { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
-
-    /* ── Studies ── */
-    .studies-section {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
-    }
-    .studies-inner { max-width: 1200px; margin: 0 auto; }
-    .studies-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.8rem;
-      margin-top: 2.5rem;
-    }
-    .study-card {
+    /* ── Science hero image ── */
+    .science-hero {
+      position: relative;
+      height: 55vh;
+      min-height: 380px;
+      overflow: hidden;
       background: var(--bg-secondary);
-      border: 1px solid rgba(97, 122, 148, 0.28);
-      padding: 2.5rem;
-      transition: border-color 0.28s ease, transform 0.28s ease;
+      padding-top: var(--nav-h);
     }
-    .study-card:hover { border-color: var(--border-strong); transform: translateY(-4px); }
-    .study-num {
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 1.1rem;
+    .science-hero img {
+      position: absolute;
+      top: var(--nav-h);
+      left: 0; right: 0; bottom: 0;
+      width: 100%;
+      height: calc(100% - var(--nav-h));
+      object-fit: cover;
+      object-position: center 20%;
     }
-    .study-card h3 {
+    .science-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13,14,18,0.3) 0%, rgba(13,14,18,0.7) 70%, var(--bg-primary) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ── Research sections ── */
+    .research-section {
+      background: var(--bg-primary);
+      padding: 5rem 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .research-inner { max-width: 860px; margin: 0 auto; }
+
+    .research-section-title {
       font-family: var(--font-display);
-      font-size: 1.3rem;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 400;
       color: var(--text-primary);
+      line-height: 1.2;
       margin-bottom: 0.4rem;
+    }
+    .research-institution {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .research-intro {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .research-body p {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.55rem;
+    }
+    .research-body p:last-child { margin-bottom: 0; }
+
+    /* Sub-study blocks */
+    .study-block {
+      margin-top: 3.5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .study-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      font-weight: 400;
+      color: var(--accent-light);
+      margin-bottom: 0.6rem;
     }
     .study-question {
       font-family: var(--font-display);
-      font-size: 0.97rem;
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
       font-style: italic;
-      color: var(--accent-light);
-      margin-bottom: 1rem;
-      line-height: 1.5;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 1.8rem;
+      padding-left: 1.2rem;
+      border-left: 2px solid var(--accent-vivid);
     }
-    .study-card p { font-size: 0.88rem; line-height: 1.78; }
-    .study-status {
+    .study-body p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+    }
+    .study-body p:last-child { margin-bottom: 0; }
+    .study-pub-link {
       display: inline-block;
-      margin-top: 1.5rem;
-      font-size: 0.67rem;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      border: 1px solid var(--border-subtle);
-      padding: 0.22rem 0.7rem;
+      margin-top: 1.2rem;
+      font-size: 0.82rem;
+      color: var(--accent-light);
+      font-style: italic;
     }
+    .study-pub-link a {
+      color: var(--accent-light);
+      border-bottom: 1px solid rgba(175,188,203,0.4);
+      transition: color 0.22s ease, border-color 0.22s ease;
+    }
+    .study-pub-link a:hover { color: var(--text-primary); border-color: var(--accent-vivid); }
+
+    /* MSc section different bg */
+    .research-section.msc { background: var(--bg-secondary); }
 
     /* ── Publications ── */
     .pubs-section {
-      background: var(--bg-secondary);
+      background: var(--bg-primary);
       border-top: 1px solid var(--border-subtle);
       padding: 5rem 2.5rem;
     }
@@ -137,7 +187,7 @@
 
     /* ── Presentations ── */
     .presentations-section {
-      background: var(--bg-primary);
+      background: var(--bg-secondary);
       border-top: 1px solid var(--border-subtle);
       padding: 5rem 2.5rem;
     }
@@ -167,13 +217,10 @@
     }
 
     /* Responsive */
-    @media (max-width: 1024px) {
-      .studies-grid { grid-template-columns: 1fr 1fr; }
-    }
     @media (max-width: 768px) {
-      .studies-grid { grid-template-columns: 1fr; }
-      .studies-section, .pubs-section, .presentations-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .research-section, .pubs-section, .presentations-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .pres-item { grid-template-columns: 1fr; gap: 0.2rem; }
+      .science-hero { height: 40vh; }
     }
   </style>
 </head>
@@ -189,9 +236,6 @@
       <li><a href="advocacy.html">Advocacy</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div class="nav-scholar">
-      <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-    </div>
     <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -203,72 +247,89 @@
     <a href="consulting.html">Consulting</a>
     <a href="advocacy.html">Advocacy</a>
     <a href="contact.html">Contact</a>
-    <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
   </div>
 
-  <!-- ── Page Header ── -->
-  <div class="page-header" style="padding-top: calc(var(--nav-h) + 4rem); background: linear-gradient(160deg, var(--bg-secondary) 0%, var(--bg-card) 100%);">
-    <div class="wrap">
-      <span class="label">Research</span>
-      <h1 class="section-heading fi">Science</h1>
-      <p class="section-subheading fi d1">Understanding the earliest days of human microbial life.</p>
-      <p class="fi d2" style="max-width:700px; font-size:1.04rem; margin-top:1.4rem; color: var(--text-secondary); line-height: 1.8;">Jennifer's doctoral research addressed one of the most consequential blind spots in microbiome science: the near-complete absence of longitudinal data from urban low- and middle-income countries, where the burden of neonatal mortality is highest and the evidence gap most consequential.</p>
-      <div class="thesis-block fi d3">
-        <span class="label" style="margin-bottom:0.6rem;">PhD Thesis · University of Toronto, 2021–2025</span>
-        <p class="thesis-title">Infant and Maternal Microbiome Dynamics and the Effects of Lactiplantibacillus plantarum on the Infant Gut Microbiome in Dhaka, Bangladesh</p>
-        <p class="thesis-meta">Department of Nutritional Sciences, Temerty Faculty of Medicine · Supervisor: Dr. Daniel Roth · Academic Committee: Prof. Philip Sherman</p>
+  <!-- ── Science Hero Image ── -->
+  <div class="science-hero">
+    <img src="science_lab.jpg" alt="Dr. Jennifer C. Onuora in the laboratory, UC San Diego" loading="eager">
+  </div>
+
+  <!-- ── Doctoral Research ── -->
+  <div class="research-section">
+    <div class="research-inner">
+
+      <h1 class="research-section-title fi">Doctoral Research</h1>
+      <span class="research-institution fi">University of Toronto / SickKids Research Institute · 2021–2025</span>
+
+      <p class="research-intro fi d1">Understanding the earliest days of human microbial life, in the places that need it most.</p>
+
+      <div class="research-body">
+        <p class="fi d2">Jennifer's doctoral work addressed one of the most consequential blind spots in modern microbiome research: the near-complete absence of longitudinal data from urban low- and middle-income countries, where the burden of infant mortality is highest and the evidence most sparse.</p>
+        <p class="fi d3">The work integrates 55 participants and 927 maternal and infant samples from an observational cohort, alongside 305 participants and 2,079 samples from a clinical trial, collected across two study sites in Dhaka, Bangladesh. Jennifer led cross-institutional collaborations spanning Bangladesh, Canada, and the United States, and developed bioinformatics pipelines and statistical analyses using industry-standard computational tools.</p>
       </div>
+
+      <!-- Infant Trajectories -->
+      <div class="study-block fi">
+        <h2 class="study-title">Infant Microbiome Trajectories</h2>
+        <p class="study-question">How do birth, feeding, and environment shape the infant gut in the places most burdened by neonatal mortality?</p>
+        <div class="study-body">
+          <p>Drawing on 385 stool samples from 55 mother-infant pairs collected from birth to six months of life in Dhaka, Bangladesh, this study characterised the earliest developmental arc of the infant fecal microbiome using shotgun metagenomics. The microbiota was dominated by <em>Bifidobacterium</em> species alongside pathobionts including <em>Klebsiella pneumoniae</em> and <em>Escherichia coli</em>, a co-dominance that may signal early dysbiosis and contribute to elevated infection risk. Infant age and delivery mode emerged as the strongest predictors of microbiome composition and metabolic pathway abundance, while antibiotic exposure reshaped the microbial landscape most profoundly in the first month of life.</p>
+          <p>These findings illuminate a critical window: the first weeks of life represent a period of extraordinary vulnerability and plasticity, where targeted, context-specific interventions, including minimising unnecessary antibiotic use, supporting optimal feeding practices, and limiting harmful environmental exposures, may redirect the infant microbiome toward trajectories that protect rather than predispose. The study is expanding to include the infant oral and skin microbiome.</p>
+          <span class="study-pub-link">Manuscript in preparation · <a href="#publications">View Publications</a></span>
+        </div>
+      </div>
+
+      <!-- Maternal Transmission -->
+      <div class="study-block fi">
+        <h2 class="study-title">Maternal and Environmental Transmission</h2>
+        <p class="study-question">What actually shapes the infant microbiome, and does prevailing science reflect the populations who need it most?</p>
+        <div class="study-body">
+          <p>This study examined the microbial relationship between 55 mothers and their infants across multiple body sites, including maternal gut, vaginal, and skin microbiomes alongside infant fecal, oral, and skin microbiomes, analysed longitudinally from birth through six months. By mapping transmission patterns across this full constellation of maternal and infant body sites, the work produced one of the most comprehensive pictures of early microbial colonisation generated from an urban low- and middle-income country setting.</p>
+          <p>The findings challenged a cornerstone assumption of microbiome science: that infant gut colonisation is driven primarily by vertical maternal transmission. Shared environmental exposures and horizontal transmission proved equally powerful forces, a result that reframes how microbiome-targeted interventions should be designed and evaluated, particularly for the billions of people living in settings that Western-centred research has long overlooked.</p>
+          <span class="study-pub-link">Published in <em>Cell Host and Microbe</em> (2025) · <a href="https://doi.org/10.1016/j.chom.2025.11.002" target="_blank" rel="noopener">doi:10.1016/j.chom.2025.11.002</a></span>
+        </div>
+      </div>
+
+      <!-- Probiotic RCT -->
+      <div class="study-block fi">
+        <h2 class="study-title">Probiotic Randomised Controlled Trial</h2>
+        <p class="study-question">Can an intervention that reduced neonatal sepsis in rural India shift the infant gut microbiome in urban Bangladesh?</p>
+        <div class="study-body">
+          <p>This three-arm randomised controlled trial investigated the effects of a seven-day course of <em>Lactiplantibacillus plantarum</em> ATCC 202195, administered as a probiotic alone or as a synbiotic with fructo-oligosaccharide, on the fecal microbiome and metabolome of 305 newborns in Dhaka, across 2,079 stool samples collected from birth to six months. The analysis spans both microbial community composition and downstream metabolic consequences, integrating metagenomics with metabolomics to capture the full biological footprint of the intervention.</p>
+          <p>The probiotic produced minor and short-lived effects on microbiome composition, with the indigenous <em>Bifidobacterium longum</em>-dominated microbiome resisting sustained colonisation by the introduced strain. This is a significant scientific finding. It establishes that probiotic efficacy is not simply a property of the organism being administered, but is governed by the pre-existing ecological structure of the host microbiome. An intervention designed and validated in one geographical and biological context cannot be assumed to operate the same way in another. For a field in which global probiotic recommendations are routinely extrapolated from data generated in a narrow set of populations, this has far-reaching consequences for how neonatal interventions are designed, tested, and scaled.</p>
+          <span class="study-pub-link">Published abstract in <em>Current Developments in Nutrition</em> (2025) · <a href="https://doi.org/10.1016/j.cdnut.2025.106772" target="_blank" rel="noopener">doi:10.1016/j.cdnut.2025.106772</a> · Full manuscript including metabolomics in preparation · <a href="#publications">View Publications</a></span>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- ── Studies ── -->
-  <div class="studies-section">
-    <div class="studies-inner">
-      <span class="label">Studies</span>
-      <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Four Studies</h2>
-      <div class="studies-grid">
+  <!-- ── Master's Research ── -->
+  <div class="research-section msc">
+    <div class="research-inner">
 
-        <div class="study-card fi">
-          <div class="study-num">Study 01</div>
-          <h3>Infant Trajectories</h3>
-          <p class="study-question">How do fecal, oral, and skin microbiomes develop across the first year of life in an urban LMIC setting?</p>
-          <p>Age-related trajectories of the infant fecal, oral, and skin microbiome and associations with prenatal and postnatal factors in Dhaka, Bangladesh.</p>
-          <span class="study-status">Manuscript in Preparation · Expanding to Include Metabolomics</span>
+      <h2 class="research-section-title fi">Master's Research</h2>
+      <span class="research-institution fi">Newcastle University, England · 2018–2019</span>
+
+      <!-- CF Drug Discovery -->
+      <div class="study-block fi" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3 class="study-title">Cystic Fibrosis Drug Discovery</h3>
+        <p class="study-question">What if the way cells are grown in the laboratory shapes what we think treatments can do?</p>
+        <div class="study-body">
+          <p>Supported by a Commonwealth Master's Scholarship awarded to fewer than 1% of international applicants globally, Jennifer's MSc research examined a critical problem in cystic fibrosis therapeutics. CF is a life-limiting genetic disease in which mutations in the <em>CFTR</em> gene disrupt ion and fluid transport across airway epithelia, causing viscous mucus accumulation, chronic infection, and progressive lung damage. Developing effective treatments depends on laboratory models that accurately reflect what happens in the human airway.</p>
+          <p>The gold standard model, primary human airway epithelial cells grown at an air-liquid interface, is now used across research groups worldwide to evaluate CFTR-directed therapies. But a growing number of differentiation protocols are in use, applied without standardisation and without a clear understanding of how profoundly they shape what the cells become. Jennifer's work demonstrated that the choice of growth medium fundamentally alters cellular architecture, gene expression, ion transport behaviour, and the response of CF cells to CFTR modulator therapies already in clinical use.</p>
+          <p>The implication is significant: two research groups studying the same drug, using the same cell type, may reach different conclusions simply because of how their cells were grown. Establishing what a model is doing before asking what a treatment can do is not a technical detail. It is a scientific necessity.</p>
+          <span class="study-pub-link">Published in <em>Cells</em> (2020) · <a href="https://www.mdpi.com/2073-4409/9/9/2137" target="_blank" rel="noopener">doi:10.3390/cells9092137</a></span>
         </div>
-
-        <div class="study-card fi d1">
-          <div class="study-num">Study 02</div>
-          <h3>Maternal Transmission</h3>
-          <p class="study-question">What shapes infant gut metabolic development: maternal vertical transmission or shared environmental exposures?</p>
-          <p>Environmental and maternal imprints on infant gut metabolic development. Published in <em>Cell Host &amp; Microbe</em> (2025), one of the top three journals in microbiology globally. Co-first author.</p>
-          <span class="study-status">Published · Cell Host &amp; Microbe 2025</span>
-        </div>
-
-        <div class="study-card fi d2">
-          <div class="study-num">Study 03</div>
-          <h3>Probiotic RCT</h3>
-          <p class="study-question">Can early neonatal probiotic administration reshape the infant gut microbiome in a resource-limited setting?</p>
-          <p>Effects of early neonatal administration of <em>Lactiplantibacillus plantarum</em> ATCC 202195 on the fecal microbiome and metabolome of infants in Dhaka, Bangladesh: a 305-participant, 2,079-sample, 3-arm randomised controlled trial.</p>
-          <span class="study-status">Manuscript in Preparation</span>
-        </div>
-
-        <div class="study-card fi d3">
-          <div class="study-num">Study 04</div>
-          <h3>CF Drug Discovery</h3>
-          <p class="study-question">How does the choice of differentiation media affect cystic fibrosis drug discovery outcomes in primary airway cell cultures?</p>
-          <p>Examining how differentiation media selection significantly impacts cell lineage and response to CFTR modulators in fully differentiated primary cultures of cystic fibrosis human airway epithelial cells.</p>
-          <span class="study-status">Published · Cells 2020</span>
-        </div>
-
       </div>
+
     </div>
   </div>
 
   <!-- ── Publications ── -->
   <div class="pubs-section" id="publications">
     <div class="pubs-inner">
-      <span class="label">Publications</span>
-      <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Peer-Reviewed Work</h2>
+      <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Publications</h2>
       <div class="rule fi"></div>
 
       <div class="pub-category">
@@ -284,7 +345,7 @@
         </div>
         <div class="pub-item fi d2">
           Saint-Criq V, Delpiano L, Casement J, <strong>Onuora JC</strong>, Lin J, Gray MA. Choice of differentiation media significantly impacts cell lineage and response to CFTR modulators in fully differentiated primary cultures of cystic fibrosis human airway epithelial cells. <em>Cells.</em> 2020;9(9):2137.
-          <a class="pub-doi" href="https://doi.org/10.3390/cells9092137" target="_blank" rel="noopener">doi:10.3390/cells9092137</a>
+          <a class="pub-doi" href="https://www.mdpi.com/2073-4409/9/9/2137" target="_blank" rel="noopener">doi:10.3390/cells9092137</a>
         </div>
       </div>
 
@@ -311,10 +372,8 @@
   <!-- ── Presentations ── -->
   <div class="presentations-section">
     <div class="presentations-inner">
-      <span class="label">Presentations</span>
       <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Selected Presentations</h2>
       <div class="rule fi"></div>
-
       <div class="pres-item fi">
         <div class="pres-type">Oral &amp; Poster</div>
         <div class="pres-desc">
@@ -350,10 +409,18 @@
     <div class="footer-inner">
       <p class="footer-copy">© 2026 Dr. Jennifer C. Onuora</p>
       <div class="footer-social">
-        <a href="https://www.youtube.com/@DrJenniferOnuora" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/drjenniferonuora" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.youtube.com/@DrJenniferOnuora" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/jenniferconuora" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/drjenniferonuora" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ig2" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><path fill="url(#ig2)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="https://scholar.google.ca/citations?user=dz2XtNoAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+        </a>
       </div>
     </div>
   </footer>

@@ -192,24 +192,6 @@ ul { list-style: none; }
 .nav-links a.active::after { width: 100%; }
 .nav-links a.active { color: var(--accent-light); }
 
-.nav-scholar {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.nav-scholar a {
-  font-size: 0.67rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
-  padding: 4px 10px;
-  border-radius: 2px;
-  transition: color 0.22s ease, border-color 0.22s ease;
-}
-.nav-scholar a:hover { color: var(--accent-light); border-color: var(--border-strong); }
-
 /* Hamburger */
 .hamburger {
   display: none;
@@ -277,16 +259,59 @@ footer {
   color: var(--text-secondary);
   letter-spacing: 0.03em;
 }
-.footer-social { display: flex; gap: 1.4rem; align-items: center; }
-.footer-social a {
-  font-size: 0.72rem;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  font-weight: 500;
-  transition: color 0.22s ease;
+.footer-social {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
 }
-.footer-social a:hover { color: var(--accent-light); }
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  color: var(--text-secondary);
+}
+.footer-social a:hover { opacity: 0.75; transform: translateY(-2px); }
+.social-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* ── Speaking CTA section (home + about bottom) ── */
+.speaking-cta {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
+  padding: 5.5rem 2.5rem;
+}
+.speaking-cta-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 6rem;
+  align-items: center;
+}
+.speaking-topics {
+  display: flex;
+  flex-direction: column;
+}
+.speaking-topics span {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.speaking-topics span.bold {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.speaking-cta-body p {
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 2.2rem;
+}
 
 /* ── Content blocks ── */
 .prose p {
@@ -338,33 +363,16 @@ footer {
 }
 .tl-sep { color: rgba(97, 122, 148, 0.5); margin: 0 0.4rem; }
 
-/* ── Awards list ── */
-.award-list { margin-top: 2.5rem; }
-.award-item {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 2rem;
-  padding: 1.2rem 0;
-  border-bottom: 1px solid var(--border-subtle);
-}
-.award-year {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--accent-light);
-  padding-top: 0.1rem;
-}
-.award-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.72; }
-
 /* ── Responsive ── */
 @media (max-width: 768px) {
   :root { --nav-h: 64px; }
-  .nav-links, .nav-scholar { display: none; }
+  .nav-links { display: none; }
   .hamburger { display: flex; }
   .wrap, .page-header { padding-left: 1.5rem; padding-right: 1.5rem; }
   #nav { padding: 0 1.5rem; }
   .mobile-menu { padding: 1.5rem 1.5rem 2rem; }
   .tl-item { grid-template-columns: 90px 1fr; gap: 1.2rem; }
-  .award-item { grid-template-columns: 52px 1fr; gap: 1rem; }
   .page-header { padding: 4.5rem 1.5rem 3rem; }
+  .speaking-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .speaking-cta-grid { grid-template-columns: 1fr; gap: 3rem; }
 }

@@ -10,10 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ── Cover: photo left, heading right ── */
+    /* ── Cover: heading left, photo right ── */
     .advocacy-cover {
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
+      grid-template-columns: 1.1fr 1fr;
       min-height: calc(100vh - var(--nav-h));
       padding-top: var(--nav-h);
       background: var(--bg-primary);
@@ -34,7 +34,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to left, var(--bg-primary) 0%, transparent 22%);
+      background: linear-gradient(to right, var(--bg-primary) 0%, transparent 22%);
       z-index: 1;
       pointer-events: none;
     }
@@ -42,7 +42,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 5rem 4rem 5rem 3rem;
+      padding: 5rem 4rem 5rem 2.5rem;
     }
     .cover-text h1 {
       font-family: var(--font-display);
@@ -265,15 +265,15 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- ── Cover: photo left, heading right ── -->
+  <!-- ── Cover: heading left, photo right ── -->
   <div class="advocacy-cover">
-    <div class="cover-photo">
-      <img src="Jennifer_Onuora_Headshot.JPG" alt="Dr. Jennifer C. Onuora" loading="eager">
-    </div>
     <div class="cover-text">
       <h1 class="fi">Advocacy</h1>
       <p class="cover-subhead fi d1">For the girl who was told the world wasn't built for her.</p>
       <p class="cover-body fi d2">Jennifer's advocacy is rooted in a single conviction: that scientific excellence and equitable access are not competing values. They are inseparable ones. Drawing on her journey from Nigeria to the world's leading research institutions, she works at the intersection of women's health, girl child education, maternal and child research, and the systemic barriers that keep brilliant people out of science. Her platform is built on data, personal narrative, and an unshakeable belief that representation and rigour belong in the same room.</p>
+    </div>
+    <div class="cover-photo">
+      <img src="Jennifer_Onuora_Headshot.JPG" alt="Dr. Jennifer C. Onuora" loading="eager">
     </div>
   </div>
 

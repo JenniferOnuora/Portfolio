@@ -10,29 +10,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ── Science hero image ── */
-    .science-hero {
-      position: relative;
-      height: 55vh;
-      min-height: 380px;
+    /* ── Science cover: text left, photo right ── */
+    .science-cover {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      min-height: calc(100vh - var(--nav-h));
+      padding-top: var(--nav-h);
+      background: var(--bg-primary);
+    }
+    .science-cover-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 2.5rem;
+    }
+    .science-cover-text h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .science-cover-text .cover-sub {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent-light);
+      margin-bottom: 2rem;
+    }
+    .science-cover-text p {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      max-width: 520px;
+    }
+    .science-cover-photo {
+      position: sticky;
+      top: var(--nav-h);
+      height: calc(100vh - var(--nav-h));
       overflow: hidden;
       background: var(--bg-secondary);
-      padding-top: var(--nav-h);
     }
-    .science-hero img {
-      position: absolute;
-      top: var(--nav-h);
-      left: 0; right: 0; bottom: 0;
+    .science-cover-photo img {
       width: 100%;
-      height: calc(100% - var(--nav-h));
-      object-fit: cover;
-      object-position: center 20%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      background: var(--bg-secondary);
     }
-    .science-hero::after {
+    .science-cover-photo::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(13,14,18,0.3) 0%, rgba(13,14,18,0.7) 70%, var(--bg-primary) 100%);
+      background: linear-gradient(to right, var(--bg-primary) 0%, transparent 15%);
       z-index: 1;
       pointer-events: none;
     }
@@ -217,10 +250,21 @@
     }
 
     /* Responsive */
+    @media (max-width: 1024px) {
+      .science-cover { grid-template-columns: 1fr; min-height: auto; }
+      .science-cover-photo {
+        position: relative;
+        top: 0;
+        height: 60vh;
+      }
+      .science-cover-photo img { object-fit: contain; }
+      .science-cover-text { padding: 3.5rem 2.5rem 2rem; }
+    }
     @media (max-width: 768px) {
       .research-section, .pubs-section, .presentations-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .pres-item { grid-template-columns: 1fr; gap: 0.2rem; }
-      .science-hero { height: 40vh; }
+      .science-cover-text { padding: 3rem 1.5rem 1.5rem; }
+      .science-cover-photo { height: 50vh; }
     }
   </style>
 </head>
@@ -249,9 +293,16 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- ── Science Hero Image ── -->
-  <div class="science-hero">
-    <img src="Science.JPEG" alt="Dr. Jennifer C. Onuora in the laboratory, UC San Diego" loading="eager">
+  <!-- ── Science Cover: text left, photo right ── -->
+  <div class="science-cover">
+    <div class="science-cover-text">
+      <h1 class="fi">Science</h1>
+      <p class="cover-sub fi d1">Understanding the earliest days of human microbial life, in the places that need it most.</p>
+      <p class="fi d2">Jennifer's doctoral and postgraduate research addressed some of the most consequential blind spots in modern biomedical science, generating data that challenges prevailing assumptions and has implications for how interventions are designed, tested, and scaled for the populations who need them most.</p>
+    </div>
+    <div class="science-cover-photo">
+      <img src="Science.JPEG" alt="Dr. Jennifer C. Onuora in the laboratory, UC San Diego" loading="eager">
+    </div>
   </div>
 
   <!-- ── Doctoral Research ── -->
@@ -260,8 +311,6 @@
 
       <h1 class="research-section-title fi">Doctoral Research</h1>
       <span class="research-institution fi">University of Toronto / SickKids Research Institute · 2021–2025</span>
-
-      <p class="research-intro fi d1">Understanding the earliest days of human microbial life, in the places that need it most.</p>
 
       <div class="research-body">
         <p class="fi d2">Jennifer's doctoral work addressed one of the most consequential blind spots in modern microbiome research: the near-complete absence of longitudinal data from urban low- and middle-income countries, where the burden of infant mortality is highest and the evidence most sparse.</p>

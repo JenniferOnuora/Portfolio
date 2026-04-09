@@ -468,6 +468,9 @@
       form.style.display       = '';
       form.reset();
       clearErrors();
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Send Message';
+      btn.disabled    = false;
       document.getElementById('fname').focus();
     });
   </script>

@@ -189,6 +189,14 @@
       transition: background 0.22s ease, border-color 0.22s ease;
     }
     .form-submit:hover { background: var(--accent); border-color: var(--accent); }
+    .form-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+    .form-error {
+      display: block;
+      font-size: 0.78rem;
+      color: #c97070;
+      letter-spacing: 0.02em;
+      min-height: 1rem;
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -238,20 +246,27 @@
 
         <!-- Form column -->
         <div class="contact-form-col">
-          <div id="formSuccess" style="display:none; background:var(--bg-card); border:1px solid var(--border-subtle); padding:2rem 2.4rem; margin-bottom:1.5rem;">
-            <p style="font-size:1.05rem; color:var(--accent-light); margin-bottom:0.5rem; font-family:var(--font-display); font-size:1.3rem;">Message sent.</p>
-            <p style="font-size:0.97rem; color:var(--text-secondary); margin:0;">Thank you — Jennifer will be in touch personally.</p>
+
+          <!-- Success state -->
+          <div id="formSuccess" style="display:none;">
+            <p style="font-family:var(--font-display); font-size:clamp(1.6rem,2.8vw,2.2rem); font-weight:400; color:var(--text-primary); margin-bottom:0.6rem;">Message received.</p>
+            <p style="font-size:1.05rem; color:var(--text-secondary); line-height:1.8; margin-bottom:2rem;">Thank you for reaching out. Jennifer reviews all enquiries personally and will be in touch.</p>
+            <button id="resetFormBtn" class="form-submit" type="button">Send Another Message</button>
           </div>
+
+          <!-- Contact form -->
           <form class="contact-form" id="contactForm" novalidate>
 
             <div class="form-group fi">
               <label class="form-label" for="fname">Name</label>
-              <input class="form-input" type="text" id="fname" name="name" autocomplete="name" required placeholder="Your full name">
+              <input class="form-input" type="text" id="fname" name="name" autocomplete="name" placeholder="Your full name">
+              <span class="form-error" id="err-name"></span>
             </div>
 
             <div class="form-group fi d1">
               <label class="form-label" for="femail">Email</label>
-              <input class="form-input" type="email" id="femail" name="email" autocomplete="email" required placeholder="your@email.com">
+              <input class="form-input" type="email" id="femail" name="email" autocomplete="email" placeholder="your@email.com">
+              <span class="form-error" id="err-email"></span>
             </div>
 
             <div class="form-group fi d2">
@@ -273,8 +288,11 @@
 
             <div class="form-group fi d4">
               <label class="form-label" for="fmessage">Message</label>
-              <textarea class="form-textarea" id="fmessage" name="message" required placeholder="Tell Dr. Onuora about your project or enquiry…"></textarea>
+              <textarea class="form-textarea" id="fmessage" name="message" placeholder="Tell Dr. Onuora about your project or enquiry…"></textarea>
+              <span class="form-error" id="err-message"></span>
             </div>
+
+            <span class="form-error" id="err-general" style="margin-top:-0.5rem;"></span>
 
             <button type="submit" class="form-submit fi">Send Message</button>
 
@@ -360,27 +378,50 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fi').forEach(el => fadeObserver.observe(el));
 
-    /* Contact form → Web3Forms */
+    /* ── Contact form → Web3Forms ── */
     const WEB3FORMS_KEY = 'bed03b3d-c5df-4d11-8357-09b3cfebe6e5';
 
-    document.getElementById('contactForm').addEventListener('submit', async e => {
+    const form       = document.getElementById('contactForm');
+    const successBox = document.getElementById('formSuccess');
+    const resetBtn   = document.getElementById('resetFormBtn');
+
+    function clearErrors() {
+      document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+      document.querySelectorAll('.form-input, .form-textarea').forEach(el => {
+        el.style.borderColor = '';
+      });
+    }
+
+    function showError(id, msg, inputId) {
+      document.getElementById(id).textContent = msg;
+      if (inputId) document.getElementById(inputId).style.borderColor = '#c97070';
+    }
+
+    function validateEmail(val) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    }
+
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      const form    = e.target;
-      const btn     = form.querySelector('.form-submit');
+      clearErrors();
+
       const name    = document.getElementById('fname').value.trim();
       const email   = document.getElementById('femail').value.trim();
       const message = document.getElementById('fmessage').value.trim();
+      const org     = document.getElementById('forg').value.trim();
+      const enquiry = document.getElementById('fenquiry').value || 'General';
 
-      if (!name || !email || !message) {
-        alert('Please fill in your name, email, and message before sending.');
-        return;
-      }
+      let valid = true;
+      if (!name)                   { showError('err-name',    'Please enter your name.',              'fname');    valid = false; }
+      if (!email)                  { showError('err-email',   'Please enter your email address.',     'femail');   valid = false; }
+      else if (!validateEmail(email)) { showError('err-email', 'Please enter a valid email address.', 'femail');   valid = false; }
+      if (!message)                { showError('err-message', 'Please enter a message.',              'fmessage'); valid = false; }
+      if (!valid) return;
 
+      const btn = form.querySelector('.form-submit');
       btn.textContent = 'Sending…';
       btn.disabled = true;
 
-      const org     = document.getElementById('forg').value.trim();
-      const enquiry = document.getElementById('fenquiry').value || 'General';
       const body = [
         '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
         `NAME             ${name}`,
@@ -395,33 +436,39 @@
         'Sent via jenniferonuora.com'
       ].filter(l => l !== null).join('\n');
 
-      const data = {
-        access_key: WEB3FORMS_KEY,
-        subject:    `New Enquiry · ${enquiry} · ${name}`,
-        from_name:  'jenniferonuora.com',
-        replyto:    email,
-        message:    body
-      };
-
       try {
         const res  = await fetch('https://api.web3forms.com/submit', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body:    JSON.stringify(data)
+          body:    JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject:    `New Enquiry · ${enquiry} · ${name}`,
+            from_name:  'jenniferonuora.com',
+            replyto:    email,
+            message:    body
+          })
         });
         const json = await res.json();
         if (json.success) {
           form.reset();
-          form.style.display = 'none';
-          document.getElementById('formSuccess').style.display = 'block';
+          form.style.display    = 'none';
+          successBox.style.display = 'block';
         } else {
           throw new Error(json.message || 'Submission failed');
         }
-      } catch (err) {
-        alert('Something went wrong. Please email info@jenniferonuora.com directly.');
+      } catch {
+        showError('err-general', 'Something went wrong. Please email info@jenniferonuora.com directly.');
         btn.textContent = 'Send Message';
         btn.disabled = false;
       }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      successBox.style.display = 'none';
+      form.style.display       = '';
+      form.reset();
+      clearErrors();
+      document.getElementById('fname').focus();
     });
   </script>
 

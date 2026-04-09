@@ -42,7 +42,7 @@
       margin-bottom: 2rem;
     }
     .science-cover-text p {
-      font-size: 1.02rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
       line-height: 1.85;
       max-width: 520px;
@@ -74,8 +74,8 @@
       display: grid;
       grid-template-columns: 1fr 1.4fr;
       gap: 3rem;
-      align-items: start;
-      margin-top: 2rem;
+      align-items: center;
+      margin-top: 0;
     }
     /* CSS columns so each image shows at its own natural dimensions */
     .pres-images {
@@ -89,10 +89,10 @@
       margin-bottom: 0.5rem;
       break-inside: avoid;
       opacity: 0.88;
-      transition: opacity 0.32s ease, transform 0.32s ease;
+      transition: opacity 0.32s ease;
     }
     .pres-images img:last-child { margin-bottom: 0; }
-    .pres-images img:hover { opacity: 1; transform: scale(1.02); }
+    .pres-images img:hover { opacity: 1; }
 
     /* ── Research sections ── */
     .research-section {
@@ -196,7 +196,7 @@
     .pubs-inner { max-width: 1200px; margin: 0 auto; }
     .pub-category { margin-top: 3rem; }
     .pub-cat-label {
-      font-size: 0.68rem;
+      font-size: 0.78rem;
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--accent);
@@ -208,9 +208,9 @@
     .pub-item {
       padding: 1.1rem 0 1.1rem 1.4rem;
       border-bottom: 1px solid var(--border-subtle);
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
-      line-height: 1.8;
+      line-height: 1.85;
       position: relative;
     }
     .pub-item::before {
@@ -226,7 +226,7 @@
     .pub-tag {
       display: inline-block;
       margin-left: 0.5rem;
-      font-size: 0.68rem;
+      font-size: 0.78rem;
       color: var(--accent);
       letter-spacing: 0.05em;
       font-style: italic;
@@ -235,7 +235,7 @@
       display: inline-block;
       margin-left: 0.3rem;
       color: var(--accent-light);
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       text-decoration: underline;
       text-decoration-color: rgba(175,188,203,0.4);
       transition: color 0.22s ease;
@@ -246,7 +246,7 @@
     .presentations-section {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border-subtle);
-      padding: 5rem 0 5rem 2.5rem; /* no right padding — images bleed to edge */
+      padding: 5rem 0 2.5rem 2.5rem; /* no right padding — images bleed to edge */
     }
     .presentations-inner { max-width: none; margin: 0; }
     .pres-item {
@@ -444,10 +444,10 @@
   <!-- ── Presentations ── -->
   <div class="presentations-section">
     <div class="presentations-inner">
-      <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Selected Presentations</h2>
-      <div class="rule fi"></div>
       <div class="pres-two-col">
         <div class="pres-list">
+          <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Selected Presentations</h2>
+          <div class="rule fi"></div>
           <div class="pres-item fi">
             <div class="pres-type">Oral &amp; Poster</div>
             <div class="pres-desc">

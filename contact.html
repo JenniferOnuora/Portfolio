@@ -379,16 +379,14 @@
       btn.textContent = 'Sending…';
       btn.disabled = true;
 
+      const org     = document.getElementById('forg').value.trim() || 'N/A';
+      const enquiry = document.getElementById('fenquiry').value || 'General';
       const data = {
-        access_key:    WEB3FORMS_KEY,
-        subject:       `Website Enquiry: ${document.getElementById('fenquiry').value || 'General'} — ${name}`,
-        from_name:     'jenniferonuora.com',
-        replyto:       email,
-        name,
-        email,
-        organisation:  document.getElementById('forg').value.trim() || 'N/A',
-        enquiry_type:  document.getElementById('fenquiry').value || 'N/A',
-        message
+        access_key: WEB3FORMS_KEY,
+        subject:    `[${enquiry}] ${name} <${email}>`,
+        from_name:  'jenniferonuora.com Contact Form',
+        replyto:    email,
+        message: `From: ${name}\nEmail: ${email}\nOrganisation: ${org}\nEnquiry: ${enquiry}\n\n---\n\n${message}`
       };
 
       try {

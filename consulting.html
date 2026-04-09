@@ -21,8 +21,9 @@
     .consulting-text-col {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 5rem 4rem 5rem 2.5rem;
+      justify-content: flex-start;
+      padding: 6rem 4rem 5rem 2.5rem;
+      min-height: calc(100vh - var(--nav-h));
     }
     .consulting-text-col h1 {
       font-family: var(--font-display);
@@ -35,9 +36,9 @@
     }
     .consulting-tagline {
       font-family: var(--font-display);
-      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
       font-style: italic;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--accent-light);
       margin-bottom: 2rem;
     }
@@ -96,10 +97,11 @@
       max-width: 130px;
       max-height: 56px;
       object-fit: contain;
-      filter: brightness(0) invert(0.85) sepia(0.2) hue-rotate(180deg) saturate(0.6);
+      background: transparent;
+      filter: brightness(0) invert(1) opacity(0.85);
       transition: filter 0.28s ease;
     }
-    .engagement-logo-col img:hover { filter: none; }
+    .engagement-logo-col img:hover { filter: brightness(0) invert(1) opacity(1); }
     .engagement-logo-wordmark {
       font-family: var(--font-display);
       font-size: 1.6rem;
@@ -181,7 +183,7 @@
       padding-top: 0.1rem;
       line-height: 1.3;
     }
-    .expertise-desc { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.78; }
+    .expertise-desc { font-size: 0.97rem; color: var(--text-secondary); line-height: 1.78; font-weight: 400; }
 
     /* ── Who Jennifer Works With + CTA ── */
     .works-with-section {
@@ -221,7 +223,7 @@
       .consulting-cover { grid-template-columns: 1fr; min-height: auto; }
       .consulting-photo-col { position: relative; height: 55vh; top: 0; }
       .consulting-photo-col::before { background: linear-gradient(to bottom, transparent 60%, var(--bg-primary) 100%); }
-      .consulting-text-col { padding: 3.5rem 2.5rem 4rem; }
+      .consulting-text-col { padding: 3.5rem 2.5rem 4rem; min-height: auto; }
       .drives-grid { grid-template-columns: 1fr; }
       .works-with-inner { grid-template-columns: 1fr; gap: 3rem; }
       .engagement-card { grid-template-columns: 120px 1fr; gap: 2rem; }
@@ -264,7 +266,7 @@
     <div class="consulting-text-col">
       <h1 class="fi">Consulting</h1>
       <p class="consulting-tagline fi d1">Healthcare innovation through clinical evidence and strategy.</p>
-      <p class="consulting-intro fi d2">Jennifer translates biomedical science into clear, decision-ready insights for cross-functional teams. By combining clinical research expertise and advanced analytics, she generates evidence and communicates complex findings to inform strategy, improve healthcare decisions, and strengthen patient outcomes. Engagements are selective and built on genuine collaboration.</p>
+      <p class="consulting-intro fi d2">Jennifer translates biomedical science into clear, decision-ready insights for cross-functional teams. By combining clinical research expertise and advanced analytics, she generates evidence and communicates complex findings to inform strategy, improve healthcare decisions, and strengthen patient outcomes.</p>
     </div>
     <div class="consulting-photo-col">
       <img src="Consulting.JPG" alt="Dr. Jennifer C. Onuora" loading="eager">
@@ -302,7 +304,7 @@
 
         <div class="engagement-card fi d2">
           <div class="engagement-logo-col">
-            <div class="engagement-logo-wordmark">Ellveris</div>
+            <img src="Ellveris_logo.png" alt="Ellveris" style="filter: brightness(0) invert(1) opacity(0.85);">
           </div>
           <div class="engagement-body-col">
             <span class="engagement-role">Founder</span>
@@ -315,10 +317,10 @@
     </div>
   </div>
 
-  <!-- ── What Drives the Work ── -->
+  <!-- ── Core Values ── -->
   <div class="drives-section">
     <div class="drives-inner">
-      <h2 class="section-heading fi" style="font-size: clamp(1.5rem, 2.4vw, 2rem);">What Drives the Work</h2>
+      <h2 class="section-heading fi" style="font-size: clamp(1.5rem, 2.4vw, 2rem);">Core Values</h2>
       <div class="drives-grid">
         <div class="drive-item fi">
           <h3>Rigour</h3>

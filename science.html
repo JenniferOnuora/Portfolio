@@ -10,19 +10,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ── Science cover: text left, photo right ── */
-    .science-cover {
+    /* ── Science main two-column grid ── */
+    .science-main-grid {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
-      min-height: calc(100vh - var(--nav-h));
       padding-top: var(--nav-h);
       background: var(--bg-primary);
+      align-items: start;
+    }
+    .science-left-col {
+      /* scrollable content column */
     }
     .science-cover-text {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 5rem 4rem 5rem 2.5rem;
+      padding: 5rem 4rem 4rem 2.5rem;
+      min-height: calc(100vh - var(--nav-h));
     }
     .science-cover-text h1 {
       font-family: var(--font-display);
@@ -47,6 +51,15 @@
       line-height: 1.85;
       max-width: 520px;
     }
+    /* doctoral section inside left col */
+    .doctoral-section {
+      padding: 4rem 4rem 5rem 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-primary);
+    }
+    .doctoral-inner {
+      max-width: 680px;
+    }
     .science-cover-photo {
       position: sticky;
       top: var(--nav-h);
@@ -69,6 +82,29 @@
       z-index: 1;
       pointer-events: none;
     }
+
+    /* ── Presentations two-column ── */
+    .pres-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+    .pres-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .pres-images img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      opacity: 0.82;
+      transition: opacity 0.32s ease, transform 0.32s ease;
+      display: block;
+    }
+    .pres-images img:hover { opacity: 1; transform: scale(1.02); }
 
     /* ── Research sections ── */
     .research-section {
@@ -251,20 +287,24 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .science-cover { grid-template-columns: 1fr; min-height: auto; }
+      .science-main-grid { grid-template-columns: 1fr; }
       .science-cover-photo {
         position: relative;
         top: 0;
         height: 60vh;
       }
       .science-cover-photo img { object-fit: contain; }
-      .science-cover-text { padding: 3.5rem 2.5rem 2rem; }
+      .science-cover-text { padding: 3.5rem 2.5rem 2rem; min-height: 50vh; }
+      .doctoral-section { padding: 3.5rem 2.5rem 4rem; }
+      .pres-two-col { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .research-section, .pubs-section, .presentations-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .pres-item { grid-template-columns: 1fr; gap: 0.2rem; }
       .science-cover-text { padding: 3rem 1.5rem 1.5rem; }
       .science-cover-photo { height: 50vh; }
+      .doctoral-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .pres-images { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -293,65 +333,71 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- ── Science Cover: text left, photo right ── -->
-  <div class="science-cover">
-    <div class="science-cover-text">
-      <h1 class="fi">Science</h1>
-      <p class="cover-sub fi d1">Understanding the earliest days of human microbial life, in the places that need it most.</p>
-      <p class="fi d2">Jennifer's doctoral and postgraduate research addressed some of the most consequential blind spots in modern biomedical science, generating data that challenges prevailing assumptions and has implications for how interventions are designed, tested, and scaled for the populations who need them most.</p>
-    </div>
+  <!-- ── Science main grid: left col (cover text + doctoral), right col (sticky photo) ── -->
+  <div class="science-main-grid">
+    <div class="science-left-col">
+
+      <!-- Cover text -->
+      <div class="science-cover-text">
+        <h1 class="fi">Science</h1>
+        <p class="cover-sub fi d1">Understanding the earliest days of human microbial life, in the places that need it most.</p>
+        <p class="fi d2">Jennifer's doctoral and postgraduate research addressed some of the most consequential blind spots in modern biomedical science, generating data that challenges prevailing assumptions and has implications for how interventions are designed, tested, and scaled for the populations who need them most.</p>
+      </div>
+
+      <!-- Doctoral Research -->
+      <div class="doctoral-section">
+        <div class="doctoral-inner">
+
+          <h1 class="research-section-title fi">Doctoral Research</h1>
+          <span class="research-institution fi">University of Toronto / SickKids Research Institute · 2021–2025</span>
+
+          <div class="research-body">
+            <p class="fi d1">Jennifer's doctoral work addressed one of the most consequential blind spots in modern microbiome research: the near-complete absence of longitudinal data from urban low- and middle-income countries, where the burden of infant mortality is highest and the evidence most sparse.</p>
+            <p class="fi d2">The work integrates 55 participants and 927 maternal and infant samples from an observational cohort, alongside 305 participants and 2,079 samples from a clinical trial, collected across two study sites in Dhaka, Bangladesh. Jennifer led cross-institutional collaborations spanning Bangladesh, Canada, and the United States, and developed bioinformatics pipelines and statistical analyses using industry-standard computational tools.</p>
+          </div>
+
+          <!-- Infant Trajectories -->
+          <div class="study-block fi">
+            <h2 class="study-title">Infant Microbiome Trajectories</h2>
+            <p class="study-question">How do birth, feeding, and environment shape the infant gut in the places most burdened by neonatal mortality?</p>
+            <div class="study-body">
+              <p>Drawing on 385 stool samples from 55 mother-infant pairs collected from birth to six months of life in Dhaka, Bangladesh, this study characterized the earliest developmental arc of the infant fecal microbiome using shotgun metagenomics. The microbiota was dominated by <em>Bifidobacterium</em> species alongside pathobionts including <em>Klebsiella pneumoniae</em> and <em>Escherichia coli</em>, a co-dominance that may signal early dysbiosis and contribute to elevated infection risk. Infant age and delivery mode emerged as the strongest predictors of microbiome composition and metabolic pathway abundance, while antibiotic exposure reshaped the microbial landscape most profoundly in the first month of life.</p>
+              <p>These findings illuminate a critical window: the first weeks of life represent a period of extraordinary vulnerability and plasticity, where targeted, context-specific interventions, including minimising unnecessary antibiotic use, supporting optimal feeding practices, and limiting harmful environmental exposures, may redirect the infant microbiome toward trajectories that protect rather than predispose. The study is expanding to include the infant oral and skin microbiome.</p>
+              <span class="study-pub-link">Manuscript in preparation · <a href="#publications">View Publications</a></span>
+            </div>
+          </div>
+
+          <!-- Maternal Transmission -->
+          <div class="study-block fi">
+            <h2 class="study-title">Maternal and Environmental Transmission</h2>
+            <p class="study-question">What actually shapes the infant microbiome, and does prevailing science reflect the populations who need it most?</p>
+            <div class="study-body">
+              <p>This study examined the microbial relationship between 55 mothers and their infants across multiple body sites, including maternal gut, vaginal, and skin microbiomes alongside infant fecal, oral, and skin microbiomes, analysed longitudinally from birth through six months. By mapping transmission patterns across this full constellation of maternal and infant body sites, the work produced one of the most comprehensive pictures of early microbial colonization generated from an urban low- and middle-income country setting.</p>
+              <p>The findings challenged a cornerstone assumption of microbiome science: that infant gut colonization is driven primarily by vertical maternal transmission. Shared environmental exposures and horizontal transmission proved equally powerful forces, a result that reframes how microbiome-targeted interventions should be designed and evaluated, particularly for the billions of people living in settings that Western-centred research has long overlooked.</p>
+              <span class="study-pub-link">Published in <em>Cell Host and Microbe</em> (2025) · <a href="https://doi.org/10.1016/j.chom.2025.11.002" target="_blank" rel="noopener">doi:10.1016/j.chom.2025.11.002</a></span>
+            </div>
+          </div>
+
+          <!-- Probiotic RCT -->
+          <div class="study-block fi">
+            <h2 class="study-title">Probiotic Randomised Controlled Trial</h2>
+            <p class="study-question">Can an intervention that reduced neonatal sepsis in rural India shift the infant gut microbiome in urban Bangladesh?</p>
+            <div class="study-body">
+              <p>This three-arm randomised controlled trial investigated the effects of a seven-day course of <em>Lactiplantibacillus plantarum</em> ATCC 202195, administered as a probiotic alone or as a synbiotic with fructo-oligosaccharide, on the fecal microbiome and metabolome of 305 newborns in Dhaka, across 2,079 stool samples collected from birth to six months. The analysis spans both microbial community composition and downstream metabolic consequences, integrating metagenomics with metabolomics to capture the full biological footprint of the intervention.</p>
+              <p>The probiotic produced minor and short-lived effects on microbiome composition, with the indigenous <em>Bifidobacterium longum</em>-dominated microbiome resisting sustained colonization by the introduced strain. This is a significant scientific finding. It establishes that probiotic efficacy is not simply a property of the organism being administered, but is governed by the pre-existing ecological structure of the host microbiome. An intervention designed and validated in one geographical and biological context cannot be assumed to operate the same way in another. For a field in which global probiotic recommendations are routinely extrapolated from data generated in a narrow set of populations, this has far-reaching consequences for how neonatal interventions are designed, tested, and scaled.</p>
+              <span class="study-pub-link">Published abstract in <em>Current Developments in Nutrition</em> (2025) · <a href="https://doi.org/10.1016/j.cdnut.2025.106772" target="_blank" rel="noopener">doi:10.1016/j.cdnut.2025.106772</a> · Full manuscript including metabolomics in preparation · <a href="#publications">View Publications</a></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /science-left-col -->
+
     <div class="science-cover-photo">
       <img src="Science.JPEG" alt="Dr. Jennifer C. Onuora in the laboratory, UC San Diego" loading="eager">
     </div>
-  </div>
-
-  <!-- ── Doctoral Research ── -->
-  <div class="research-section">
-    <div class="research-inner">
-
-      <h1 class="research-section-title fi">Doctoral Research</h1>
-      <span class="research-institution fi">University of Toronto / SickKids Research Institute · 2021–2025</span>
-
-      <div class="research-body">
-        <p class="fi d2">Jennifer's doctoral work addressed one of the most consequential blind spots in modern microbiome research: the near-complete absence of longitudinal data from urban low- and middle-income countries, where the burden of infant mortality is highest and the evidence most sparse.</p>
-        <p class="fi d3">The work integrates 55 participants and 927 maternal and infant samples from an observational cohort, alongside 305 participants and 2,079 samples from a clinical trial, collected across two study sites in Dhaka, Bangladesh. Jennifer led cross-institutional collaborations spanning Bangladesh, Canada, and the United States, and developed bioinformatics pipelines and statistical analyses using industry-standard computational tools.</p>
-      </div>
-
-      <!-- Infant Trajectories -->
-      <div class="study-block fi">
-        <h2 class="study-title">Infant Microbiome Trajectories</h2>
-        <p class="study-question">How do birth, feeding, and environment shape the infant gut in the places most burdened by neonatal mortality?</p>
-        <div class="study-body">
-          <p>Drawing on 385 stool samples from 55 mother-infant pairs collected from birth to six months of life in Dhaka, Bangladesh, this study characterised the earliest developmental arc of the infant fecal microbiome using shotgun metagenomics. The microbiota was dominated by <em>Bifidobacterium</em> species alongside pathobionts including <em>Klebsiella pneumoniae</em> and <em>Escherichia coli</em>, a co-dominance that may signal early dysbiosis and contribute to elevated infection risk. Infant age and delivery mode emerged as the strongest predictors of microbiome composition and metabolic pathway abundance, while antibiotic exposure reshaped the microbial landscape most profoundly in the first month of life.</p>
-          <p>These findings illuminate a critical window: the first weeks of life represent a period of extraordinary vulnerability and plasticity, where targeted, context-specific interventions, including minimising unnecessary antibiotic use, supporting optimal feeding practices, and limiting harmful environmental exposures, may redirect the infant microbiome toward trajectories that protect rather than predispose. The study is expanding to include the infant oral and skin microbiome.</p>
-          <span class="study-pub-link">Manuscript in preparation · <a href="#publications">View Publications</a></span>
-        </div>
-      </div>
-
-      <!-- Maternal Transmission -->
-      <div class="study-block fi">
-        <h2 class="study-title">Maternal and Environmental Transmission</h2>
-        <p class="study-question">What actually shapes the infant microbiome, and does prevailing science reflect the populations who need it most?</p>
-        <div class="study-body">
-          <p>This study examined the microbial relationship between 55 mothers and their infants across multiple body sites, including maternal gut, vaginal, and skin microbiomes alongside infant fecal, oral, and skin microbiomes, analysed longitudinally from birth through six months. By mapping transmission patterns across this full constellation of maternal and infant body sites, the work produced one of the most comprehensive pictures of early microbial colonisation generated from an urban low- and middle-income country setting.</p>
-          <p>The findings challenged a cornerstone assumption of microbiome science: that infant gut colonisation is driven primarily by vertical maternal transmission. Shared environmental exposures and horizontal transmission proved equally powerful forces, a result that reframes how microbiome-targeted interventions should be designed and evaluated, particularly for the billions of people living in settings that Western-centred research has long overlooked.</p>
-          <span class="study-pub-link">Published in <em>Cell Host and Microbe</em> (2025) · <a href="https://doi.org/10.1016/j.chom.2025.11.002" target="_blank" rel="noopener">doi:10.1016/j.chom.2025.11.002</a></span>
-        </div>
-      </div>
-
-      <!-- Probiotic RCT -->
-      <div class="study-block fi">
-        <h2 class="study-title">Probiotic Randomised Controlled Trial</h2>
-        <p class="study-question">Can an intervention that reduced neonatal sepsis in rural India shift the infant gut microbiome in urban Bangladesh?</p>
-        <div class="study-body">
-          <p>This three-arm randomised controlled trial investigated the effects of a seven-day course of <em>Lactiplantibacillus plantarum</em> ATCC 202195, administered as a probiotic alone or as a synbiotic with fructo-oligosaccharide, on the fecal microbiome and metabolome of 305 newborns in Dhaka, across 2,079 stool samples collected from birth to six months. The analysis spans both microbial community composition and downstream metabolic consequences, integrating metagenomics with metabolomics to capture the full biological footprint of the intervention.</p>
-          <p>The probiotic produced minor and short-lived effects on microbiome composition, with the indigenous <em>Bifidobacterium longum</em>-dominated microbiome resisting sustained colonisation by the introduced strain. This is a significant scientific finding. It establishes that probiotic efficacy is not simply a property of the organism being administered, but is governed by the pre-existing ecological structure of the host microbiome. An intervention designed and validated in one geographical and biological context cannot be assumed to operate the same way in another. For a field in which global probiotic recommendations are routinely extrapolated from data generated in a narrow set of populations, this has far-reaching consequences for how neonatal interventions are designed, tested, and scaled.</p>
-          <span class="study-pub-link">Published abstract in <em>Current Developments in Nutrition</em> (2025) · <a href="https://doi.org/10.1016/j.cdnut.2025.106772" target="_blank" rel="noopener">doi:10.1016/j.cdnut.2025.106772</a> · Full manuscript including metabolomics in preparation · <a href="#publications">View Publications</a></span>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  </div><!-- /science-main-grid -->
 
   <!-- ── Master's Research ── -->
   <div class="research-section msc">
@@ -423,32 +469,42 @@
     <div class="presentations-inner">
       <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Selected Presentations</h2>
       <div class="rule fi"></div>
-      <div class="pres-item fi">
-        <div class="pres-type">Oral &amp; Poster</div>
-        <div class="pres-desc">
-          American Society for Nutrition Annual Conference, Orlando, USA, May–June 2025
-          <span class="pres-award">Robert Suskind &amp; Leslie Lewinter-Suskind Pediatric Nutrition Award · Emerging Leaders in Nutrition Science Poster Finalist</span>
+      <div class="pres-two-col">
+        <div class="pres-list">
+          <div class="pres-item fi">
+            <div class="pres-type">Oral &amp; Poster</div>
+            <div class="pres-desc">
+              American Society for Nutrition Annual Conference, Orlando, USA, May–June 2025
+              <span class="pres-award">Robert Suskind &amp; Leslie Lewinter-Suskind Pediatric Nutrition Award · Emerging Leaders in Nutrition Science Poster Finalist</span>
+            </div>
+          </div>
+          <div class="pres-item fi">
+            <div class="pres-type">VIP Invited</div>
+            <div class="pres-desc">13th Microbiome &amp; Probiotics R&amp;D and Business Collaboration Forum, San Diego, USA, October 2025</div>
+          </div>
+          <div class="pres-item fi">
+            <div class="pres-type">Poster</div>
+            <div class="pres-desc">
+              IMPACTT Microbiome Conference, Canmore, Canada, September 2025
+              <span class="pres-award">Travel Award Recipient</span>
+            </div>
+          </div>
+          <div class="pres-item fi">
+            <div class="pres-type">Poster</div>
+            <div class="pres-desc">Child Health Evaluative Sciences &amp; Neurosciences Retreat, Toronto, Canada, June 2025</div>
+          </div>
+          <div class="pres-item fi">
+            <div class="pres-type">Oral</div>
+            <div class="pres-desc">Department of Nutritional Sciences, University of Toronto, November 2024</div>
+          </div>
+        </div><!-- /pres-list -->
+        <div class="pres-images fi">
+          <img src="Images/IMG_3579%202.JPG" alt="Dr. Jennifer C. Onuora at conference" loading="lazy">
+          <img src="Images/IMG_3927.jpg" alt="Dr. Jennifer C. Onuora presenting research" loading="lazy">
+          <img src="Images/IMG_5738.JPG" alt="Dr. Jennifer C. Onuora at scientific meeting" loading="lazy">
+          <img src="Images/PXL_20250531_190814680.jpg" alt="Dr. Jennifer C. Onuora, ASN conference" loading="lazy">
         </div>
-      </div>
-      <div class="pres-item fi">
-        <div class="pres-type">VIP Invited</div>
-        <div class="pres-desc">13th Microbiome &amp; Probiotics R&amp;D and Business Collaboration Forum, San Diego, USA, October 2025</div>
-      </div>
-      <div class="pres-item fi">
-        <div class="pres-type">Poster</div>
-        <div class="pres-desc">
-          IMPACTT Microbiome Conference, Canmore, Canada, September 2025
-          <span class="pres-award">Travel Award Recipient</span>
-        </div>
-      </div>
-      <div class="pres-item fi">
-        <div class="pres-type">Poster</div>
-        <div class="pres-desc">Child Health Evaluative Sciences &amp; Neurosciences Retreat, Toronto, Canada, June 2025</div>
-      </div>
-      <div class="pres-item fi">
-        <div class="pres-type">Oral</div>
-        <div class="pres-desc">Department of Nutritional Sciences, University of Toronto, November 2024</div>
-      </div>
+      </div><!-- /pres-two-col -->
     </div>
   </div>
 

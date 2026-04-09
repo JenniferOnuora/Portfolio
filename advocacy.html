@@ -41,8 +41,9 @@
     .cover-text {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 5rem 4rem 5rem 2.5rem;
+      justify-content: flex-start;
+      padding: 6rem 4rem 5rem 2.5rem;
+      min-height: calc(100vh - var(--nav-h));
     }
     .cover-text h1 {
       font-family: var(--font-display);
@@ -55,9 +56,9 @@
     }
     .cover-subhead {
       font-family: var(--font-display);
-      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
       font-style: italic;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--accent-light);
       margin-bottom: 1.8rem;
     }
@@ -177,6 +178,18 @@
     }
     .pillar p { font-size: 0.84rem; line-height: 1.68; margin-bottom: 0; }
 
+    /* Ellveris pillar as link */
+    a.pillar {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      padding: 1.2rem 1.4rem;
+      transition: border-color 0.22s ease, background 0.22s ease;
+    }
+    a.pillar:hover { border-color: var(--accent-vivid); background: var(--bg-card); }
+
     /* SDG tags */
     .sdg-tags {
       display: flex;
@@ -229,7 +242,7 @@
       .advocacy-cover { grid-template-columns: 1fr; min-height: auto; }
       .cover-photo { position: relative; min-height: 55vh; }
       .cover-photo::after { background: linear-gradient(to bottom, transparent 60%, var(--bg-primary) 100%); }
-      .cover-text { padding: 3.5rem 2.5rem; }
+      .cover-text { padding: 3.5rem 2.5rem; min-height: auto; }
       .impact-entry { grid-template-columns: 1fr; gap: 1.8rem; }
       .ellveris-pillars { grid-template-columns: 1fr; }
     }
@@ -281,84 +294,7 @@
   <div class="impact-section">
     <div class="impact-inner">
 
-      <!-- Ellveris -->
-      <div class="impact-entry fi">
-        <div class="impact-logo">
-          <div class="impact-wordmark">Ellveris</div>
-          <a href="https://ellveris.com" target="_blank" rel="noopener" style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-light); border-bottom:1px solid var(--border-subtle); padding-bottom:1px; transition:color 0.22s ease;">ellveris.com</a>
-        </div>
-        <div class="impact-body">
-          <h2>Ellveris</h2>
-          <p>Jennifer is the founder of <a href="https://ellveris.com" target="_blank" rel="noopener">Ellveris</a>, a science platform for women. Ellveris was built in response to a specific problem: women are navigating oversaturated markets, overstated claims, and health misinformation produced by people with no scientific training, while the evidence that could genuinely serve them is poorly translated, selectively marketed, or absent altogether.</p>
-          <p>Ellveris translates that evidence clearly and honestly across four pillars that reflect the full scope of women's lives.</p>
-          <div class="ellveris-pillars">
-            <div class="pillar">
-              <div class="pillar-name">Beauty</div>
-              <p>The biology behind what shows up on the face, skin, hair, and body.</p>
-            </div>
-            <div class="pillar">
-              <div class="pillar-name">Health</div>
-              <p>The life-stage and diagnostic questions women carry for years without clear answers.</p>
-            </div>
-            <div class="pillar">
-              <div class="pillar-name">Career</div>
-              <p>How female physiology intersects with focus, performance, leadership, and productivity.</p>
-            </div>
-            <div class="pillar">
-              <div class="pillar-name">Mind</div>
-              <p>Hormone-informed mental wellbeing, cognition, sleep, and emotional health.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- UN SDGs -->
-      <div class="impact-entry fi">
-        <div class="impact-logo">
-          <!-- UN emblem SVG -->
-          <svg class="un-emblem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="United Nations">
-            <circle cx="50" cy="50" r="48" fill="none" stroke="#AFBCCB" stroke-width="2"/>
-            <ellipse cx="50" cy="50" rx="20" ry="48" fill="none" stroke="#AFBCCB" stroke-width="1.5"/>
-            <ellipse cx="50" cy="50" rx="35" ry="48" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
-            <line x1="2" y1="50" x2="98" y2="50" stroke="#AFBCCB" stroke-width="1.5"/>
-            <line x1="50" y1="2" x2="50" y2="98" stroke="#AFBCCB" stroke-width="1.5"/>
-            <ellipse cx="50" cy="50" rx="48" ry="16" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
-            <ellipse cx="50" cy="50" rx="48" ry="30" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
-            <circle cx="50" cy="50" r="6" fill="#AFBCCB"/>
-            <!-- Olive branches suggestion -->
-            <path d="M8,72 Q20,60 32,68 Q20,76 8,72Z" fill="#AFBCCB" opacity="0.6"/>
-            <path d="M92,72 Q80,60 68,68 Q80,76 92,72Z" fill="#AFBCCB" opacity="0.6"/>
-          </svg>
-        </div>
-        <div class="impact-body">
-          <h2>United Nations Sustainable Development Goals</h2>
-          <div class="sdg-tags">
-            <span class="sdg-tag">SDG 3 · Good Health &amp; Well-Being</span>
-            <span class="sdg-tag">SDG 4 · Quality Education</span>
-          </div>
-          <p>In 2018, Jennifer received United Nations recognition for her voluntary contributions to the Sustainable Development Goals in Nigeria, with particular focus on SDG 3 (Good Health and Well-Being) and SDG 4 (Quality Education). This recognition reflects a commitment to ensuring that progress in health and education reaches the communities most affected by gaps in both.</p>
-        </div>
-      </div>
-
-      <!-- Mentorship -->
-      <div class="impact-entry fi">
-        <div class="impact-logo">
-          <div class="impact-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
-              <circle cx="9" cy="7" r="4" stroke="#AFBCCB" stroke-width="1.5"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-        </div>
-        <div class="impact-body">
-          <h2>Mentorship</h2>
-          <p>Jennifer has mentored and continues to mentor across every stage of her career. She has supported prospective African graduate students through the Exceptional Scholars Academy, undergraduate students through the University of Toronto's Nutritional Sciences Mentorship Program, and secondary school girls as a senior biology teacher in Nigeria.</p>
-        </div>
-      </div>
-
-      <!-- Speaking -->
+      <!-- Speaking (first) -->
       <div class="impact-entry fi">
         <div class="impact-logo">
           <div class="impact-icon">
@@ -384,6 +320,81 @@
               <div class="speaking-area-title">Global Health</div>
               <p>How scientists can shape policy, business, and leadership, and the importance of context-specific evidence in low- and middle-income countries.</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mentorship (second) -->
+      <div class="impact-entry fi">
+        <div class="impact-logo">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="9" cy="7" r="4" stroke="#AFBCCB" stroke-width="1.5"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="impact-body">
+          <h2>Mentorship</h2>
+          <p>Jennifer has mentored and continues to mentor across every stage of her career. She has supported prospective African graduate students through the Exceptional Scholars Academy, undergraduate students through the University of Toronto's Nutritional Sciences Mentorship Program, and secondary school girls as a senior biology teacher in Nigeria.</p>
+        </div>
+      </div>
+
+      <!-- UN SDGs (third) -->
+      <div class="impact-entry fi">
+        <div class="impact-logo">
+          <svg class="un-emblem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="United Nations">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#AFBCCB" stroke-width="2"/>
+            <ellipse cx="50" cy="50" rx="20" ry="48" fill="none" stroke="#AFBCCB" stroke-width="1.5"/>
+            <ellipse cx="50" cy="50" rx="35" ry="48" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
+            <line x1="2" y1="50" x2="98" y2="50" stroke="#AFBCCB" stroke-width="1.5"/>
+            <line x1="50" y1="2" x2="50" y2="98" stroke="#AFBCCB" stroke-width="1.5"/>
+            <ellipse cx="50" cy="50" rx="48" ry="16" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
+            <ellipse cx="50" cy="50" rx="48" ry="30" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
+            <circle cx="50" cy="50" r="6" fill="#AFBCCB"/>
+            <path d="M8,72 Q20,60 32,68 Q20,76 8,72Z" fill="#AFBCCB" opacity="0.6"/>
+            <path d="M92,72 Q80,60 68,68 Q80,76 92,72Z" fill="#AFBCCB" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="impact-body">
+          <h2>United Nations Sustainable Development Goals</h2>
+          <div class="sdg-tags">
+            <span class="sdg-tag">SDG 3 · Good Health &amp; Well-Being</span>
+            <span class="sdg-tag">SDG 4 · Quality Education</span>
+          </div>
+          <p>In 2018, Jennifer received United Nations recognition for her voluntary contributions to the Sustainable Development Goals in Nigeria, with particular focus on SDG 3 (Good Health and Well-Being) and SDG 4 (Quality Education). This recognition reflects a commitment to ensuring that progress in health and education reaches the communities most affected by gaps in both.</p>
+        </div>
+      </div>
+
+      <!-- Ellveris (last) -->
+      <div class="impact-entry fi">
+        <div class="impact-logo">
+          <div class="impact-wordmark">Ellveris</div>
+          <a href="https://ellveris.com" target="_blank" rel="noopener" style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-light); border-bottom:1px solid var(--border-subtle); padding-bottom:1px; transition:color 0.22s ease;">ellveris.com</a>
+        </div>
+        <div class="impact-body">
+          <h2>Ellveris</h2>
+          <p>Jennifer is the founder of <a href="https://ellveris.com" target="_blank" rel="noopener">Ellveris</a>, a science platform for women. Ellveris was built in response to a specific problem: women are navigating oversaturated markets, overstated claims, and health misinformation produced by people with no scientific training, while the evidence that could genuinely serve them is poorly translated, selectively marketed, or absent altogether.</p>
+          <p>Ellveris translates that evidence clearly and honestly across four pillars that reflect the full scope of women's lives.</p>
+          <div class="ellveris-pillars">
+            <a href="https://ellveris.com/beauty" target="_blank" rel="noopener" class="pillar">
+              <div class="pillar-name">Beauty</div>
+              <p>The biology behind what shows up on the face, skin, hair, and body.</p>
+            </a>
+            <a href="https://ellveris.com/health" target="_blank" rel="noopener" class="pillar">
+              <div class="pillar-name">Health</div>
+              <p>The life-stage and diagnostic questions women carry for years without clear answers.</p>
+            </a>
+            <a href="https://ellveris.com/career" target="_blank" rel="noopener" class="pillar">
+              <div class="pillar-name">Career</div>
+              <p>How female physiology intersects with focus, performance, leadership, and productivity.</p>
+            </a>
+            <a href="https://ellveris.com/mind" target="_blank" rel="noopener" class="pillar">
+              <div class="pillar-name">Mind</div>
+              <p>Hormone-informed mental wellbeing, cognition, sleep, and emotional health.</p>
+            </a>
           </div>
         </div>
       </div>

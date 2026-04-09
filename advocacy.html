@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ── Cover layout: photo left, heading right ── */
+    /* ── Cover: photo left, heading right ── */
     .advocacy-cover {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
@@ -53,120 +53,160 @@
       letter-spacing: -0.02em;
       margin-bottom: 1rem;
     }
-    .cover-intro {
-      font-size: 1.04rem;
+    .cover-subhead {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent-light);
+      margin-bottom: 1.8rem;
+    }
+    .cover-body {
+      font-size: 1.02rem;
       color: var(--text-secondary);
       line-height: 1.85;
       max-width: 520px;
-      margin-top: 1.5rem;
     }
 
-    /* ── Impact sections ── */
-    .impact-block {
-      border-top: 1px solid var(--border-subtle);
+    /* ── Impact section wrapper ── */
+    .impact-section {
+      background: var(--bg-primary);
       padding: 5rem 2.5rem;
+      border-top: 1px solid var(--border-subtle);
     }
     .impact-inner { max-width: 1200px; margin: 0 auto; }
 
-    /* Ellveris */
-    .ellveris-layout {
+    /* ── Impact entry: logo/image left, text right ── */
+    .impact-entry {
       display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 5rem;
+      grid-template-columns: 180px 1fr;
+      gap: 4rem;
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border-subtle);
       align-items: start;
-      margin-top: 2.5rem;
     }
-    .ellveris-wordmark {
+    .impact-entry:last-child { border-bottom: none; }
+
+    /* Logo column */
+    .impact-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding-top: 0.3rem;
+    }
+    .impact-logo img {
+      max-width: 140px;
+      max-height: 60px;
+      object-fit: contain;
+      filter: brightness(0) invert(0.85);
+      transition: filter 0.28s ease;
+    }
+    .impact-logo img:hover { filter: none; }
+
+    /* Ellveris wordmark (used when no logo image) */
+    .impact-wordmark {
       font-family: var(--font-display);
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-style: italic;
       font-weight: 300;
       color: var(--text-primary);
       line-height: 1;
-      margin-bottom: 1rem;
     }
-    .ellveris-link {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+
+    /* UN SVG emblem */
+    .un-emblem {
+      width: 64px;
+      height: 64px;
+      opacity: 0.8;
+    }
+
+    /* Speaking + Mentorship: decorative icon column */
+    .impact-icon {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .impact-icon svg { width: 26px; height: 26px; }
+
+    /* Text column */
+    .impact-body h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .impact-body p {
+      font-size: 0.97rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.3rem;
+    }
+    .impact-body p:last-child { margin-bottom: 0; }
+    .impact-body a {
       color: var(--accent-light);
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 1px;
+      border-bottom: 1px solid rgba(175,188,203,0.35);
       transition: color 0.22s ease, border-color 0.22s ease;
     }
-    .ellveris-link:hover { color: var(--text-primary); border-color: var(--accent-vivid); }
+    .impact-body a:hover { color: var(--text-primary); border-color: var(--accent-vivid); }
+
+    /* Ellveris pillars */
     .ellveris-pillars {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1.8rem;
+      gap: 0.8rem;
+      margin-top: 1.6rem;
     }
     .pillar {
       background: var(--bg-secondary);
       border: 1px solid var(--border-subtle);
-      padding: 1.4rem 1.6rem;
+      padding: 1.2rem 1.4rem;
     }
     .pillar-name {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--accent-light);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
-    .pillar p { font-size: 0.85rem; line-height: 1.7; }
+    .pillar p { font-size: 0.84rem; line-height: 1.68; margin-bottom: 0; }
 
-    /* UN SDGs */
+    /* SDG tags */
     .sdg-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.6rem;
-      margin: 1.4rem 0 1.8rem;
+      margin: 1.2rem 0 1.5rem;
     }
     .sdg-tag {
-      font-size: 0.72rem;
+      font-size: 0.71rem;
       letter-spacing: 0.08em;
       color: var(--accent-light);
       border: 1px solid var(--border-subtle);
-      padding: 0.3rem 0.85rem;
+      padding: 0.3rem 0.8rem;
       font-weight: 500;
     }
 
-    /* Dual block */
-    .dual-block {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-    }
-    .adv-sub-head {
-      font-family: var(--font-display);
-      font-size: 1.55rem;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-    .adv-body-text {
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-      line-height: 1.78;
-    }
-
-    /* Talk topics */
-    .topics-list { margin-top: 1.2rem; }
-    .topics-list li {
-      padding: 0.7rem 0;
+    /* Speaking areas */
+    .speaking-areas { margin-top: 1.4rem; }
+    .speaking-area {
+      padding: 1.1rem 0;
       border-bottom: 1px solid var(--border-subtle);
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-      display: flex;
-      gap: 0.8rem;
     }
-    .topics-list li:last-child { border-bottom: none; }
-    .topic-mark {
-      color: var(--accent-vivid);
+    .speaking-area:last-child { border-bottom: none; }
+    .speaking-area-title {
       font-family: var(--font-display);
-      font-size: 1rem;
-      line-height: 1.65;
-      flex-shrink: 0;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
     }
+    .speaking-area p { font-size: 0.88rem; line-height: 1.72; margin-bottom: 0; }
 
     /* CTA */
     .cta-section {
@@ -175,7 +215,7 @@
       padding: 5rem 2.5rem;
       text-align: center;
     }
-    .cta-inner { max-width: 680px; margin: 0 auto; }
+    .cta-inner { max-width: 640px; margin: 0 auto; }
     .cta-inner h2 {
       font-family: var(--font-display);
       font-size: clamp(1.8rem, 3vw, 2.6rem);
@@ -190,13 +230,13 @@
       .cover-photo { position: relative; min-height: 55vh; }
       .cover-photo::after { background: linear-gradient(to bottom, transparent 60%, var(--bg-primary) 100%); }
       .cover-text { padding: 3.5rem 2.5rem; }
-      .ellveris-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .dual-block { grid-template-columns: 1fr; gap: 3rem; }
+      .impact-entry { grid-template-columns: 1fr; gap: 1.8rem; }
+      .ellveris-pillars { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
-      .impact-block { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .ellveris-pillars { grid-template-columns: 1fr; }
+      .impact-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .cover-text { padding: 3rem 1.5rem; }
     }
   </style>
 </head>
@@ -225,87 +265,129 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- ── Cover Layout ── -->
+  <!-- ── Cover: photo left, heading right ── -->
   <div class="advocacy-cover">
     <div class="cover-photo">
       <img src="Jennifer_Onuora_Headshot.JPG" alt="Dr. Jennifer C. Onuora" loading="eager">
     </div>
     <div class="cover-text">
       <h1 class="fi">Advocacy</h1>
-      <p class="section-subheading fi d1">For the girl who was told the world wasn't built for her.</p>
-      <p class="cover-intro fi d2">Jennifer speaks on the intersection of science, equity, and ambition, drawing on her journey from Ebonyi State, Nigeria to the world's leading research institutions. Her talks are grounded in data, personal narrative, and an unshakeable belief that representation and rigour are not in tension.</p>
+      <p class="cover-subhead fi d1">For the girl who was told the world wasn't built for her.</p>
+      <p class="cover-body fi d2">Jennifer's advocacy is rooted in a single conviction: that scientific excellence and equitable access are not competing values. They are inseparable ones. Drawing on her journey from Nigeria to the world's leading research institutions, she works at the intersection of women's health, girl child education, maternal and child research, and the systemic barriers that keep brilliant people out of science. Her platform is built on data, personal narrative, and an unshakeable belief that representation and rigour belong in the same room.</p>
     </div>
   </div>
 
-  <!-- ── Ellveris ── -->
-  <div class="impact-block" style="background: var(--bg-primary);">
+  <!-- ── Impact ── -->
+  <div class="impact-section">
     <div class="impact-inner">
-      <div class="ellveris-layout">
-        <div class="fi">
-          <div class="ellveris-wordmark">Ellveris</div>
-          <a class="ellveris-link" href="https://ellveris.com" target="_blank" rel="noopener">ellveris.com</a>
-          <p style="font-size:0.95rem; color: var(--text-secondary); line-height:1.8; margin-top:1.4rem;">Jennifer is the founder of <a href="https://ellveris.com" target="_blank" rel="noopener" style="color: var(--accent-light); border-bottom: 1px solid var(--border-subtle); transition: border-color 0.22s ease;">Ellveris</a>, a women's health and mentorship platform she established to support underprivileged Nigerian and African girls through education, career guidance, and personal development. Ellveris is expanding globally to scale access to women's health resources and mentorship worldwide.</p>
+
+      <!-- Ellveris -->
+      <div class="impact-entry fi">
+        <div class="impact-logo">
+          <div class="impact-wordmark">Ellveris</div>
+          <a href="https://ellveris.com" target="_blank" rel="noopener" style="font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-light); border-bottom:1px solid var(--border-subtle); padding-bottom:1px; transition:color 0.22s ease;">ellveris.com</a>
         </div>
-        <div>
-          <span class="label" style="margin-bottom:1rem;">Four Pillars</span>
+        <div class="impact-body">
+          <h2>Ellveris</h2>
+          <p>Jennifer is the founder of <a href="https://ellveris.com" target="_blank" rel="noopener">Ellveris</a>, a science platform for women. Ellveris was built in response to a specific problem: women are navigating oversaturated markets, overstated claims, and health misinformation produced by people with no scientific training, while the evidence that could genuinely serve them is poorly translated, selectively marketed, or absent altogether.</p>
+          <p>Ellveris translates that evidence clearly and honestly across four pillars that reflect the full scope of women's lives.</p>
           <div class="ellveris-pillars">
-            <div class="pillar fi">
-              <div class="pillar-name">Women's Health</div>
-              <p>Evidence-based women's health resources designed for accessibility across resource settings.</p>
+            <div class="pillar">
+              <div class="pillar-name">Beauty</div>
+              <p>The biology behind what shows up on the face, skin, hair, and body.</p>
             </div>
-            <div class="pillar fi d1">
-              <div class="pillar-name">Mentorship</div>
-              <p>Structured one-to-one and cohort mentoring for young women navigating education and early careers.</p>
+            <div class="pillar">
+              <div class="pillar-name">Health</div>
+              <p>The life-stage and diagnostic questions women carry for years without clear answers.</p>
             </div>
-            <div class="pillar fi d2">
-              <div class="pillar-name">Career Guidance</div>
-              <p>Practical pathways into science, medicine, and leadership for first-generation students.</p>
+            <div class="pillar">
+              <div class="pillar-name">Career</div>
+              <p>How female physiology intersects with focus, performance, leadership, and productivity.</p>
             </div>
-            <div class="pillar fi d3">
-              <div class="pillar-name">Community</div>
-              <p>A global network of women who support, challenge, and champion one another.</p>
+            <div class="pillar">
+              <div class="pillar-name">Mind</div>
+              <p>Hormone-informed mental wellbeing, cognition, sleep, and emotional health.</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- ── UN SDGs + Mentorship ── -->
-  <div class="impact-block" style="background: var(--bg-secondary);">
-    <div class="impact-inner">
-      <div class="dual-block">
-        <div>
-          <h2 class="adv-sub-head fi">UN Sustainable Development Goals</h2>
-          <div class="rule fi"></div>
-          <div class="sdg-tags fi">
+      <!-- UN SDGs -->
+      <div class="impact-entry fi">
+        <div class="impact-logo">
+          <!-- UN emblem SVG -->
+          <svg class="un-emblem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="United Nations">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#AFBCCB" stroke-width="2"/>
+            <ellipse cx="50" cy="50" rx="20" ry="48" fill="none" stroke="#AFBCCB" stroke-width="1.5"/>
+            <ellipse cx="50" cy="50" rx="35" ry="48" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
+            <line x1="2" y1="50" x2="98" y2="50" stroke="#AFBCCB" stroke-width="1.5"/>
+            <line x1="50" y1="2" x2="50" y2="98" stroke="#AFBCCB" stroke-width="1.5"/>
+            <ellipse cx="50" cy="50" rx="48" ry="16" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
+            <ellipse cx="50" cy="50" rx="48" ry="30" fill="none" stroke="#AFBCCB" stroke-width="1.2"/>
+            <circle cx="50" cy="50" r="6" fill="#AFBCCB"/>
+            <!-- Olive branches suggestion -->
+            <path d="M8,72 Q20,60 32,68 Q20,76 8,72Z" fill="#AFBCCB" opacity="0.6"/>
+            <path d="M92,72 Q80,60 68,68 Q80,76 92,72Z" fill="#AFBCCB" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="impact-body">
+          <h2>United Nations Sustainable Development Goals</h2>
+          <div class="sdg-tags">
             <span class="sdg-tag">SDG 3 · Good Health &amp; Well-Being</span>
             <span class="sdg-tag">SDG 4 · Quality Education</span>
-            <span class="sdg-tag">SDG 5 · Gender Equality</span>
           </div>
-          <p class="adv-body-text fi">Jennifer received a United Nations recognition for her voluntary contributions to the Sustainable Development Goals in Nigeria in 2018, with particular focus on SDG 3 (Good Health and Well-Being), SDG 4 (Quality Education), and SDG 5 (Gender Equality). She is a longstanding advocate for girl child education in the African context.</p>
-        </div>
-        <div>
-          <h2 class="adv-sub-head fi">Mentorship &amp; Community</h2>
-          <div class="rule fi"></div>
-          <p class="adv-body-text fi">Throughout her career, Jennifer has mentored prospective African graduate students through the Exceptional Scholars Academy, undergraduate students through the University of Toronto's Nutritional Sciences Mentorship Program, and secondary school girls as a senior biology teacher and mentor in Nigeria.</p>
+          <p>In 2018, Jennifer received United Nations recognition for her voluntary contributions to the Sustainable Development Goals in Nigeria, with particular focus on SDG 3 (Good Health and Well-Being) and SDG 4 (Quality Education). This recognition reflects a commitment to ensuring that progress in health and education reaches the communities most affected by gaps in both.</p>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- ── Speaking ── -->
-  <div class="impact-block" style="background: var(--bg-primary);">
-    <div class="impact-inner">
-      <h2 class="section-heading fi" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem);">Talk Topics</h2>
-      <div class="rule fi"></div>
-      <ul class="topics-list">
-        <li class="fi"><span class="topic-mark">·</span>The Microbiome and Global Health Equity: What We Don't Know Is Who We've Left Out</li>
-        <li class="fi d1"><span class="topic-mark">·</span>From Nigeria to Nature: Navigating Science as a First-Generation International Researcher</li>
-        <li class="fi d2"><span class="topic-mark">·</span>Building a Research Career Without a Roadmap</li>
-        <li class="fi"><span class="topic-mark">·</span>Girl Child Education, Science Mentorship, and the SDGs</li>
-        <li class="fi d1"><span class="topic-mark">·</span>Evidence-Based Leadership: How Scientists Can Shape Policy and Business</li>
-      </ul>
+      <!-- Mentorship -->
+      <div class="impact-entry fi">
+        <div class="impact-logo">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="9" cy="7" r="4" stroke="#AFBCCB" stroke-width="1.5"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="impact-body">
+          <h2>Mentorship</h2>
+          <p>Jennifer has mentored and continues to mentor across every stage of her career. She has supported prospective African graduate students through the Exceptional Scholars Academy, undergraduate students through the University of Toronto's Nutritional Sciences Mentorship Program, and secondary school girls as a senior biology teacher in Nigeria.</p>
+        </div>
+      </div>
+
+      <!-- Speaking -->
+      <div class="impact-entry fi">
+        <div class="impact-logo">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 20h9" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" stroke="#AFBCCB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="impact-body">
+          <h2>Speaking</h2>
+          <p>Jennifer speaks at the intersection of science, equity, and ambition. Her talks draw on her journey from Nigeria to the world's leading research institutions, and on her experience building platforms, leading international research, and navigating systems that reward persistence as much as pedigree. She speaks across three broad areas:</p>
+          <div class="speaking-areas">
+            <div class="speaking-area">
+              <div class="speaking-area-title">Women's Health and Empowerment</div>
+              <p>The gender data gap, what science owes women, and how evidence-based platforms can close it.</p>
+            </div>
+            <div class="speaking-area">
+              <div class="speaking-area-title">Equality, Diversity and Inclusion</div>
+              <p>First-generation researcher experiences, scholarship and graduate funding for African students, and building a research career without a conventional roadmap.</p>
+            </div>
+            <div class="speaking-area">
+              <div class="speaking-area-title">Global Health</div>
+              <p>How scientists can shape policy, business, and leadership, and the importance of context-specific evidence in low- and middle-income countries.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -313,8 +395,8 @@
   <div class="cta-section">
     <div class="cta-inner fi">
       <h2>Get in Touch</h2>
-      <p>For speaking invitations, partnership enquiries, or to learn more about Ellveris, Jennifer welcomes hearing from you.</p>
-      <a href="contact.html" class="btn btn-primary">Send a Message</a>
+      <p>Speaking and advocacy enquiries are welcome. Reach out to discuss how Jennifer can contribute to your event, platform, or initiative.</p>
+      <a href="contact.html" class="btn btn-primary">Get In Touch</a>
     </div>
   </div>
 

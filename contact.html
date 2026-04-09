@@ -257,7 +257,7 @@
         alert('Please fill in your name, email, and message before sending.');
         return;
       }
-      const subject = encodeURIComponent(`Website Enquiry — ${enquiry || 'General'} — ${name}`);
+      const subject = encodeURIComponent(`Website Enquiry: ${enquiry || 'General'} - ${name}`);
       const body    = encodeURIComponent(
         `Name: ${name}\nEmail: ${email}\nOrganisation: ${org || 'N/A'}\nEnquiry Type: ${enquiry || 'N/A'}\n\n${message}`
       );

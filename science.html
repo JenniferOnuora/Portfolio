@@ -71,24 +71,26 @@
     /* ── Presentations two-column ── */
     .pres-two-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2.5rem;
       align-items: start;
       margin-top: 2rem;
     }
     .pres-images {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
+      gap: 0.4rem;
     }
     .pres-images img {
       width: 100%;
       aspect-ratio: 3/4;
       object-fit: cover;
-      opacity: 0.82;
+      object-position: center center;
+      opacity: 0.85;
       transition: opacity 0.32s ease, transform 0.32s ease;
       display: block;
     }
+    .pres-images img:nth-child(4) { object-position: left center; }
     .pres-images img:hover { opacity: 1; transform: scale(1.02); }
 
     /* ── Research sections ── */
@@ -243,9 +245,9 @@
     .presentations-section {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border-subtle);
-      padding: 5rem 2.5rem;
+      padding: 5rem 0 5rem 2.5rem; /* no right padding — images bleed to edge */
     }
-    .presentations-inner { max-width: 1200px; margin: 0 auto; }
+    .presentations-inner { max-width: none; margin: 0; }
     .pres-item {
       display: grid;
       grid-template-columns: 110px 1fr;
@@ -277,6 +279,7 @@
       .science-cover-photo img { object-fit: cover; }
       .science-cover-text { padding: 3.5rem 2.5rem 3rem; }
       .pres-two-col { grid-template-columns: 1fr; }
+      .presentations-section { padding-right: 0; }
     }
     @media (max-width: 768px) {
       .research-section, .pubs-section, .presentations-section { padding-left: 1.5rem; padding-right: 1.5rem; }
